@@ -6,9 +6,7 @@ import Colors from "../../variables/Colors";
 function PlatformPoint({platform}) {
 
     return (
-        <div className={styles.profileStatusWrapper} style={{ backgroundColor: Colors[platform] }}>
-
-        </div>
+        <div className={styles.profileStatusWrapper} style={{ backgroundColor: Colors[platform] }}></div>
     );
 
 }
