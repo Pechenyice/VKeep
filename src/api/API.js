@@ -1,0 +1,2 @@
+
+// export {getPCMinutes, getAndroidMinutes etc...}
