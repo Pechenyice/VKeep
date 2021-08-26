@@ -1,0 +1,70 @@
+
+.sessionsLegend {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.daysWrapper {
+    display: flex;
+}
+
+.onlineWrapper {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+.blocksGrid {
+    display: flex;
+    gap: 20px;
+}
+
+.onlineSessionWrapper {
+    display: flex;
+    align-items: center;
+    width: 270px;
+    padding: 15px 20px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: .3s;
+}
+
+.onlineSessionWrapper:hover {
+    background: #F5F7FB;
+    transition: .3s;
+}
+
+.onlineSessionWrapper:hover .onlineTiming{
+    color: var(--blue);
+    transition: .3s;
+}
+ 
+.onlineTiming {
+    font-family: Sansation;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 20px;
+    color: var(--black);
+    transition: .3s;
+}
+
+.decorator {
+    width: 3px;
+    height: 3px;
+    background-color: var(--grey);
+    border-radius: 3px;
+    margin-left: 8px;
+    margin-right: 8px;
+}
+
+.onlinePlatform {
+    font-family: Sansation;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 20px;
+    color: var(--grey);
+}
