@@ -1,0 +1,9 @@
+.activitySvg {
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(39, 135, 245, 0.15);
+    border-radius: 15px;
+}
