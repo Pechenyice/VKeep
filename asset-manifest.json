@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/Pechenyice/VKeep/static/css/main.7cc71d51.chunk.css",
+    "main.js": "/Pechenyice/VKeep/static/js/main.b5536ffc.chunk.js",
+    "main.js.map": "/Pechenyice/VKeep/static/js/main.b5536ffc.chunk.js.map",
+    "runtime-main.js": "/Pechenyice/VKeep/static/js/runtime-main.81c95aba.js",
+    "runtime-main.js.map": "/Pechenyice/VKeep/static/js/runtime-main.81c95aba.js.map",
+    "static/js/2.aa7dea6d.chunk.js": "/Pechenyice/VKeep/static/js/2.aa7dea6d.chunk.js",
+    "static/js/2.aa7dea6d.chunk.js.map": "/Pechenyice/VKeep/static/js/2.aa7dea6d.chunk.js.map",
+    "static/js/3.d248421a.chunk.js": "/Pechenyice/VKeep/static/js/3.d248421a.chunk.js",
+    "static/js/3.d248421a.chunk.js.map": "/Pechenyice/VKeep/static/js/3.d248421a.chunk.js.map",
+    "index.html": "/Pechenyice/VKeep/index.html",
+    "static/css/main.7cc71d51.chunk.css.map": "/Pechenyice/VKeep/static/css/main.7cc71d51.chunk.css.map",
+    "static/js/2.aa7dea6d.chunk.js.LICENSE.txt": "/Pechenyice/VKeep/static/js/2.aa7dea6d.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/Pechenyice/VKeep/static/media/regular.9be04a01.ttf"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.81c95aba.js",
+    "static/js/2.aa7dea6d.chunk.js",
+    "static/css/main.7cc71d51.chunk.css",
+    "static/js/main.b5536ffc.chunk.js"
+  ]
+}
