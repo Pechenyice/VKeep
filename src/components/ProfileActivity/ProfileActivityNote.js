@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styles from './ProfileActivity.module.css';
 import PropTypes, { func } from 'prop-types';
 import svgManager from "../../svgs/svgManager";
+import SvgIconBlock from "../SvgIconBlock/SvgIconBlock";
 
 function ProfileActivityNote({content}) {
 
@@ -26,7 +27,7 @@ function ProfileActivityNote({content}) {
 
         let datevalues = [
             date.getFullYear(),
-            ('0' + date.getMonth()+1).slice(-2),
+            ('0' + (date.getMonth()+1)).slice(-2),
             ('0' + date.getDate()).slice(-2),
             ('0' + date.getHours()).slice(-2),
             ('0' + date.getMinutes()).slice(-2),
@@ -39,9 +40,8 @@ function ProfileActivityNote({content}) {
     return (
         <div className={styles.activityNote}>
 
-            <div className={styles.activitySvg}>
-                {svgManager.getSvg(`activity-${content.type}-svg`)}
-            </div>
+
+            <SvgIconBlock icon={svgManager.getSvg(`activity-${content.type}-svg`)} />
 
             <div className={styles.activityContent}>
 
