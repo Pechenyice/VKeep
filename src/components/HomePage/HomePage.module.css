@@ -12,7 +12,7 @@
     width: 440px;
     padding: 30px 42px;
 
-    background: #FFFFFF;
+    background: var(--white);
     box-shadow: 0px 30px 100px -10px #F5F4F8;
     border-radius: 20px;
 }
@@ -43,7 +43,7 @@
     position: relative;
     width: 100%;
     height: 100%;
-    background: #FFFFFF;
+    background: var(--white);
     border: 1px solid #E1DFEC;
     padding-left: 41px;
     padding-right: 16px;
@@ -53,6 +53,12 @@
     font-size: 16px;
     line-height: 28px;
     color: var(--black);
+    transition: .3s;
+}
+
+.input:focus {
+    border: 1px solid var(--blue);
+    transition: .3s;
 }
 
 .input::placeholder {
@@ -118,6 +124,10 @@
 
     .formContainer {
         display: block;
+    }
+
+    .inputWrapper {
+        width: 100%;
     }
 
     .inputSubmit {
