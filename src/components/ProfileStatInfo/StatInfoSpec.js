@@ -23,7 +23,7 @@ function StatInfoSpec({icon, hint, count}) {
 }
 
 StatInfoSpec.propTypes = {
-    icon: PropTypes.string,
+    icon: PropTypes.object,
     hint: PropTypes.string,
     count: PropTypes.number
 }
