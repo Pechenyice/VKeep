@@ -14,7 +14,7 @@ function SvgIconBlock({icon}) {
 }
 
 SvgIconBlock.propTypes = {
-    icon: PropTypes.string
+    icon: PropTypes.object
 }
 
 export default SvgIconBlock;
