@@ -104,7 +104,7 @@ function ProfilePage() {
                     <ProfileStatInfo />
                 </LayoutManager>
 
-                <LayoutManager stylesheet={{maxHeight: '570px'}} columns={1}>
+                <LayoutManager stylesheet={{maxHeight: '605px'}} columns={1}>
                     <ProfileStatistic platformSelected={platformSelected}/>
                 </LayoutManager>
 
