@@ -1,6 +1,9 @@
 
 let Colors = {
-    'PC': '#2787F5'
+    'PC': '#2787F5',
+    'Android': '#0ED48C',
+    'IOS': '#3AAFFB',
+    'Other': '#84E9F4'
 }
 
 
