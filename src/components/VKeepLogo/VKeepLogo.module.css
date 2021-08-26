@@ -1,0 +1,27 @@
+
+.logoWrapper {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.logoMain {
+    font-style: normal;
+    font-weight: 400;
+    color: var(--black);
+}
+
+.logoHint {
+    font-family: Sansation Light;
+    font-style: normal;
+    font-weight: 300;
+    color: var(--grey);
+    line-height: 20px;
+    padding-top: 15px;
+}
+
+@media screen and (max-width: 480px) {
+    .logoHint {
+        display: none;
+    }
+}
