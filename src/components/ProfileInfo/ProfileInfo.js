@@ -31,7 +31,7 @@ function ProfileInfo({img, name, aka, status}) {
 }
 
 ProfileInfo.propTypes = {
-    img: PropTypes.object,
+    img: PropTypes.string,
     name: PropTypes.string,
     aka: PropTypes.string,
     status: PropTypes.string
