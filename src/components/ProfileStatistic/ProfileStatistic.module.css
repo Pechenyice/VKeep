@@ -1,0 +1,84 @@
+.statisticWrapper {
+    position: relative;
+    height: calc(605px - 100px);
+}
+
+.daysWrapper {
+    display: flex;
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+
+.chartWrapper {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+
+.chart {
+    position: absolute;
+}
+
+.chartTiming {
+    font-family: Sansation;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 20px;
+    color: var(--black);
+}
+
+.legend {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.plank {
+    display: flex;
+    gap: 10px;
+    width: 50%;
+    margin-bottom: 30px;
+    transition: .3s;
+}
+
+.plankActive .plankName {
+    color: var(--black);
+    transition: .3s;
+}
+
+.plankActive .plankTime {
+    color: var(--black);
+    transition: .3s;
+}
+
+.plankPoint {
+    margin-top: 3px;
+}
+
+.plankName {
+    font-family: Sansation;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 20px;
+    color: var(--grey);
+    transition: .3s;
+}
+
+.plankTime {
+    font-family: Sansation;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 20px;
+    color: var(--grey);
+    transition: .3s;
+}
