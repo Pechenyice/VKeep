@@ -1,8 +1,20 @@
+
+/* 
+  common styles 
+*/
+
 body {
   margin: 0;
+
+  /* 
+    initial 
+  */
+
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
+
+  font-family: 'Sansation';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -10,4 +22,57 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+*::placeholder {
+  font-family: Sansation Light;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 28px;
+}
+
+input {
+  outline: none;
+}
+
+a {
+  color: unset;
+  text-decoration: none;
+}
+
+button {
+  all: unset;
+  box-sizing: border-box;
+}
+
+/* 
+  fonts 
+*/
+
+@font-face {
+  font-family: 'Sansation';
+  src: url('./fonts/sansation/regular.ttf');
+}
+
+@font-face {
+  font-family: 'Sansation Light';
+  src: url('./fonts/sansation/light.ttf');
+}
+
+/*
+  variables
+*/
+
+:root {
+  --white: #FFFFFF;
+  --black: #0A071B;
+  --grey: #8C87A6;
+  --blue: #2787F5;
 }
