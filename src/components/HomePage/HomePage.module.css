@@ -1,0 +1,128 @@
+
+.homePage {
+    width: 100%;
+    height: 100vh;
+    padding-left: 265px;
+    display: flex;
+    align-items: center;
+}
+
+.formWrapper {
+    margin-top: 40px;
+    width: 440px;
+    padding: 30px 42px;
+
+    background: #FFFFFF;
+    box-shadow: 0px 30px 100px -10px #F5F4F8;
+    border-radius: 20px;
+}
+
+.inputLabel {
+    font-family: Sansation Light;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 18px;
+    color: var(--black);
+    margin-bottom: 15px;
+}
+
+.formContainer {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.inputWrapper {
+    position: relative;
+    width: 280px;
+    height: 48px;
+}
+
+.input {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: #FFFFFF;
+    border: 1px solid #E1DFEC;
+    padding-left: 41px;
+    padding-right: 16px;
+    border-radius: 8px;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 28px;
+    color: var(--black);
+}
+
+.input::placeholder {
+    color: var(--grey);
+}
+
+.svgWapper {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+}
+
+.inputSubmit {
+    width: 65px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--blue);
+    color: var(--white);
+    border-radius: 8px;
+    transition: .3s;
+    cursor: pointer;
+    border: 2px solid var(--blue);
+}
+
+.inputSubmit:hover {
+    background: var(--white);
+    transition: .3s;
+}
+
+.inputSubmit svg path{
+    fill: var(--white);
+    transition: .3s;
+}
+
+.inputSubmit:hover svg path{
+    fill: var(--blue);
+    transition: .3s;
+}
+
+@media screen and (max-width: 970px) {
+    .homePage {
+        padding-left: calc(50% - 200px);
+    }
+
+    .homePageLogoWrapper {
+        width: max-content;
+        margin: auto;
+    }
+}
+
+
+@media screen and (max-width: 480px) {
+    .formWrapper {
+        width: 312px;
+        padding: 16px 24px;
+    }
+
+    .homePage {
+        padding-left: calc(50% - 156px);
+    }
+
+    .formContainer {
+        display: block;
+    }
+
+    .inputSubmit {
+        width: 100%;
+        margin-top: 16px;
+    }
+}
+
