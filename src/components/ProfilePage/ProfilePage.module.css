@@ -1,6 +1,7 @@
 
 .profilePage {
     background: var(--background-color);
+    min-height: 100vh;
 }
 
 .header {
@@ -23,6 +24,7 @@
     width: 1420px;
     margin: auto;
     display: flex;
+    flex-wrap: wrap;
     gap: 50px;
     padding: 50px 0;
 }
