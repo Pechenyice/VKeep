@@ -1,0 +1,33 @@
+.day {
+    width: max-content;
+    height: 38px;
+    font-family: Sansation;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 18px;
+    color: var(--grey);
+    border-radius: 8px;
+    padding: 9px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: .3s;
+    cursor: pointer;
+}
+
+.day:hover {
+    color: var(--blue);
+    transition: .3s;
+}
+
+.dayActive {
+    font-family: Sansation;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 18px;
+    color: var(--blue);
+    background-color: #DFEDFE;
+    transition: .3s;
+}
