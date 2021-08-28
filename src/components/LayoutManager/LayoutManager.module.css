@@ -4,7 +4,8 @@
     box-shadow: 0px 30px 100px -10px #F5F4F8;
     border-radius: 20px;
     padding: 50px;
-    transition: .3s;
+    transition: 0s;
+    min-height: 1px;
 }
 
 .flexColumns-1 {
