@@ -3,7 +3,7 @@ import styles from './ProfileActivity.module.css';
 import PropTypes from 'prop-types';
 import ServiceName from "../ServiceName/ServiceName";
 import svgManager from './../../svgs/svgManager';
-import ProfileActivityNote from "./ProfileActivityNote";
+import ProfileActivityManager from "./ProfileActivityManager";
 
 function ProfileActivity({content, onResize, size}) {
 
@@ -12,11 +12,13 @@ function ProfileActivity({content, onResize, size}) {
     return (
         <div className={styles.wrapperContainer} style={size ? {height: '1020px'} : {}}>
             <div className={styles.wrapper}>
-                <ServiceName name={'Активность'} displayCount={true} count={content.length} />
+                <ServiceName name={'Активность'} displayCount={true} count={
+                    Object.keys(content).length ? content.statuses.length + content.avatars.length + content.names.length : 0
+                    } />
 
                 <div className={styles.activities} style={size ? {height: '900px'} : {}}>
                     {
-                        content.map((a, i) => <ProfileActivityNote key={i} content={a}/>)
+                        Object.keys(content).length ? <ProfileActivityManager content={content}/> : null
                     }
                 </div>
 
@@ -31,7 +33,7 @@ function ProfileActivity({content, onResize, size}) {
 }
 
 ProfileActivity.propTypes = {
-    content: PropTypes.arrayOf(PropTypes.object),
+    content: PropTypes.object,
     onResize: PropTypes.func,
     size: PropTypes.bool
 }
