@@ -1,0 +1,112 @@
+
+.skeletonWrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.skeletonContent {
+    position: relative;
+    width: 100%;
+    /* height: 100%; */
+    overflow: hidden;
+}
+
+.textMain {
+    position: relative;
+    width: 40%;
+    height: 20px;
+    background: var(--light-grey);
+    overflow: hidden;
+}
+
+.textHelper {
+    position: relative;
+    width: 100%;
+    height: 15px;
+    background: var(--light-grey);
+    margin-top: 10px;
+    overflow: hidden;
+}
+
+.skeletonAnimator {
+    position: absolute;
+    left: -100px;
+    top: 0;
+    width: 20px;
+    height: 200%;
+    transform: skewX(-15deg);
+    background: var(--background-color);
+    opacity: 1;
+}
+
+.skeletonAnimatorText {
+    animation: skeletonAnimator 2s ease-in-out 0s infinite forwards;
+}
+
+.skeletonAnimatorPhoto {
+    animation: skeletonAnimator 2s ease-in-out 0s infinite forwards;
+}
+
+.photo {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: var(--light-grey);
+}
+
+.chart {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: var(--light-grey);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    animation: skeletonChartAnimator 2s ease-in-out 0s infinite alternate;
+}
+
+.chartCutout {
+    position: relative;
+    width: 70%;
+    height: 70%;
+    border-radius: 50%;
+    background: var(--white);
+}
+
+@keyframes skeletonChartAnimator {
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(.9);
+    }
+}
+
+@keyframes skeletonAnimator {
+    0% {
+        left: -100px;
+    }
+
+    50% {
+        left: calc(100% + 100px);
+        opacity: 1;
+    }
+
+    75% {
+        opacity: 0;
+        left: calc(100% + 100px);
+    }
+
+    76% {
+        left: -100px;
+    }
+
+    100% {
+        opacity: 1;
+        left: -100px;
+    }
+}
