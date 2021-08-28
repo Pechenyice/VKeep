@@ -3,15 +3,20 @@ import styles from './ProfileInfo.module.css';
 import PropTypes from 'prop-types';
 import PlatformPoint from "../PlatformPoint/PlatformPoint";
 
-function ProfileInfo({img, name, aka, status}) {
+function ProfileInfo({img, name, aka, status, platform}) {
 
     return (
         <div className={styles.profileWrapper}>
             <div className={styles.profilePhotoWrapper}>
                 <img src={img} alt='profile photo' />
-                <div className={styles.platformPointWrapper}>
-                    <PlatformPoint platform={'PC'}/>
-                </div>
+                {
+                    platform != '' ?
+                    <div className={styles.platformPointWrapper}>
+                        <PlatformPoint platform={platform}/> 
+                    </div> : 
+                    null
+                }
+                
             </div>
 
             <div className={styles.profileTextWrapper}>
@@ -34,7 +39,8 @@ ProfileInfo.propTypes = {
     img: PropTypes.string,
     name: PropTypes.string,
     aka: PropTypes.string,
-    status: PropTypes.string
+    status: PropTypes.string,
+    platform: PropTypes.string
 }
 
 export default ProfileInfo;
