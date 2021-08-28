@@ -1,0 +1,16 @@
+{
+  "name": "vkeep_server",
+  "version": "1.0.0",
+  "description": "emulation vkeep prod server",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1"
+  }
+}
