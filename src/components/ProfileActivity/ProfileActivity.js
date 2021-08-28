@@ -11,15 +11,15 @@ function ProfileActivity({content, onResize, size}) {
     function countRenderedUpdates() {
         let count = 0;
         for (let s of content.statuses) {
-            count += s.isInitial ? 1 : 0;
+            count += s.isInitial ? 0 : 1;
         }
 
         for (let a of content.avatars) {
-            count += a.isInitial ? 1 : 0;
+            count += a.isInitial ? 0 : 1;
         }
 
         for (let n of content.names) {
-            count += n.isInitial ? 1 : 0;
+            count += n.isInitial ? 0 : 1;
         }
 
         return count;
