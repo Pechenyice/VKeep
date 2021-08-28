@@ -40,13 +40,13 @@ change port to value from **.env** file in **server/** directory
 
 ## NPM Scripts
 
-### After pull request
+### **After pull request**
 
 ```
 npm run construct
 ```
 
-### After installation
+### **After installation**
 
 ```
 npm run start
@@ -61,7 +61,15 @@ npm run start
 
 to start development server
 
-### Build
+### **Or**
+
+```
+npm run dev
+```
+
+to start both servers (non cross-platform, maybe)
+
+### **Build**
 
 ```
 npm run build
