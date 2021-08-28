@@ -79,15 +79,21 @@ let users = {
                 'platform': 'Other'
             },
             {
-                'start': 1630000214000,
-                'end': 1630000215000,
+                'start': 1630011914000,
+                'end': 1630011918000,
                 'platform': 'Other'
             },
             {
                 'start': 1630100321000,
                 'end': 1630100326000,
                 'platform': 'IOS'
+            },
+            {
+                'start': 1630193918000,
+                'end': 1630193919000,
+                'platform': 'IOS'
             }
+            
         ],
         "updates": {
             "names": [
@@ -119,6 +125,96 @@ let users = {
                     'isInitial': false
                 },
                 {
+                    'oldValue': 'Bob here',
+                    'newValue': 'Bob here x2',
+                    'detected': 1630100325000,
+                    'isInitial': false
+                },
+                {
+                    'oldValue': 'Bob here',
+                    'newValue': 'Bob here x2',
+                    'detected': 1630100325000,
+                    'isInitial': false
+                },
+                {
+                    'oldValue': 'Bob here',
+                    'newValue': 'Bob here x2',
+                    'detected': 1630100325000,
+                    'isInitial': false
+                },
+                {
+                    'oldValue': 'Bob here',
+                    'newValue': 'Bob here x2',
+                    'detected': 1630100325000,
+                    'isInitial': false
+                },
+                {
+                    'oldValue': 'Bob here',
+                    'newValue': 'Bob here x2',
+                    'detected': 1630100325000,
+                    'isInitial': false
+                },
+                {
+                    'oldValue': 'Bob here',
+                    'newValue': 'Bob here x2',
+                    'detected': 1630100325000,
+                    'isInitial': false
+                },
+                {
+                    'oldValue': 'Bob here',
+                    'newValue': 'Bob here x2',
+                    'detected': 1630100325000,
+                    'isInitial': false
+                },
+                {
+                    'oldValue': 'Bob here',
+                    'newValue': 'Bob here x2',
+                    'detected': 1630100325000,
+                    'isInitial': false
+                },
+                {
+                    'oldValue': 'Bob here',
+                    'newValue': 'Bob here x2',
+                    'detected': 1630100325000,
+                    'isInitial': false
+                },
+                {
+                    'oldValue': 'Bob here',
+                    'newValue': 'Bob here x2',
+                    'detected': 1630100325000,
+                    'isInitial': false
+                },
+                {
+                    'oldValue': 'Bob here',
+                    'newValue': 'Bob here x2',
+                    'detected': 1630100325000,
+                    'isInitial': false
+                },
+                {
+                    'oldValue': 'Bob here',
+                    'newValue': 'Bob here x2',
+                    'detected': 1630100325000,
+                    'isInitial': false
+                },
+                {
+                    'oldValue': 'Bob here',
+                    'newValue': 'Bob here x2',
+                    'detected': 1630100325000,
+                    'isInitial': false
+                },
+                {
+                    'oldValue': 'Bob here',
+                    'newValue': 'Bob here x2',
+                    'detected': 1630100325000,
+                    'isInitial': false
+                },
+                {
+                    'oldValue': 'Bob here',
+                    'newValue': 'Bob here x2',
+                    'detected': 1630100325000,
+                    'isInitial': false
+                },
+                {
                     'oldValue': '',
                     'newValue': 'Bob here',
                     'detected': 1630100320000,
@@ -134,18 +230,25 @@ app.get('/', (req, res) => {
 })
 
 app.get('/api/users', (req, res) => {
-    if (req.query.user) res.send(JSON.stringify(users[req.query.user].common));
-    if (req.query.id) res.send(JSON.stringify(users[req.query.id].common));
+    setTimeout(() => {
+        if (req.query.user) res.send(JSON.stringify(users[req.query.user].common));
+        if (req.query.id) res.send(JSON.stringify(users[req.query.id].common));
+    }, 5000);
+    
 })
 
 app.get('/api/sessions', (req, res) => {
-    if (req.query.user) res.send(JSON.stringify(users[req.query.user].sessions));
-    if (req.query.id) res.send(JSON.stringify(users[req.query.id].sessions));
+    setTimeout(() => {
+        if (req.query.user) res.send(JSON.stringify(users[req.query.user].sessions));
+        if (req.query.id) res.send(JSON.stringify(users[req.query.id].sessions));
+    }, 10000);
 })
 
 app.get('/api/updates', (req, res) => {
-    if (req.query.user) res.send(JSON.stringify(users[req.query.user].updates));
-    if (req.query.id) res.send(JSON.stringify(users[req.query.id].updates));
+    setTimeout(() => {
+        if (req.query.user) res.send(JSON.stringify(users[req.query.user].updates));
+        if (req.query.id) res.send(JSON.stringify(users[req.query.id].updates));
+    }, 15000);
 })
 
 app.listen(port, () => {
