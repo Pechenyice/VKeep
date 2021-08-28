@@ -3,7 +3,7 @@ import styles from './ProfileStatistic.module.css';
 import PropTypes from 'prop-types';
 import PlatformPoint from "../PlatformPoint/PlatformPoint";
 
-function ChartTimePlank({isActive, platform, time}) {
+function ChartTimePlank({fillSkeleton=false, skeleton, isActive, platform, time}) {
 
     let classes = [styles.plank];
 
@@ -17,7 +17,11 @@ function ChartTimePlank({isActive, platform, time}) {
 
             <div className={styles.plankContent}>
                 <p className={styles.plankName}>{platform}</p>
-                <p className={styles.plankTime}>({time})</p>
+                {
+                    !fillSkeleton ?
+                    <p className={styles.plankTime}>({time})</p> :
+                    skeleton
+                }
             </div>
         </div>
     );
@@ -25,6 +29,8 @@ function ChartTimePlank({isActive, platform, time}) {
 }
 
 ChartTimePlank.propTypes = {
+    fillSkeleton: PropTypes.bool,
+    skeleton: PropTypes.node,
     isActive: PropTypes.bool,
     platform: PropTypes.string,
     time: PropTypes.string
