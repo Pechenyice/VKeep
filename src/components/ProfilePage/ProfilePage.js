@@ -67,7 +67,9 @@ function ProfilePage({user}) {
                 </LayoutManager>
 
                 <LayoutManager stylesheet={{maxHeight: '570px'}} columns={1}>
-                    <ProfileStatInfo />
+                    {
+                        sessions.length && Object.keys(userInfo).length && Object.keys(updates).length ? <ProfileStatInfo content={{userInfo, updates, sessions}}/> : null
+                    }
                 </LayoutManager>
 
                 <LayoutManager stylesheet={{maxHeight: '605px'}} columns={1}>
