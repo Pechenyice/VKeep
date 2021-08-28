@@ -36,7 +36,7 @@ function ProfileSessions({sessions, onHover, onLeave}) {
             ('0' + date.getSeconds()).slice(-2)
         ];
 
-        return `${datevalues[2]}-${datevalues[1]}-${datevalues[0]} ${datevalues[3]}:${datevalues[4]}:${datevalues[5]}`;
+        return `${datevalues[3]}:${datevalues[4]}`;
     }
 
     function constructOnline() {
@@ -45,7 +45,9 @@ function ProfileSessions({sessions, onHover, onLeave}) {
 
         switch (period) {
             case 'today': {
+
                 let filtered = sessions.filter(s => {
+
                     return new Date().setHours(0, 0, 0, 0) == new Date(s.start).setHours(0, 0, 0, 0);
                 });
         
@@ -61,26 +63,33 @@ function ProfileSessions({sessions, onHover, onLeave}) {
         
                         if (i >= filtered.length) break;
                         
-                        block.push(<div key={i} className={styles.onlineSessionWrapper} onMouseEnter={handleSessionEnter(sessions[i].platform)} onMouseLeave={onLeave}>
-                            <p className={styles.onlineTiming}>{renderDate(sessions[i].end - sessions[i].start)}</p>
+                        block.push(<div key={i} className={styles.onlineSessionWrapper} onMouseEnter={handleSessionEnter(filtered[i].platform)} onMouseLeave={onLeave}>
+                            <p className={styles.onlineTiming}>{renderDate(filtered[i].start)} - {renderDate(filtered[i].end)}</p>
                             <div className={styles.decorator}></div>
-                            <p className={styles.onlinePlatform}>{sessions[i].platform}</p>
+                            <p className={styles.onlinePlatform}>{filtered[i].platform}</p>
                         </div>);
             
                     }
         
                     blocks.push(<div key={j} className={styles.onlineSessionBlock}>{block}</div>);
                 }
+
+                break;
             }
 
             case 'yesterday': {
+
                 let filtered = sessions.filter(s => {
                     let date = new Date();
                     date.setDate(date.getDate() - 1);
                     date.setHours(0, 0, 0, 0);
+                    date = date.getTime();
+                    
 
                     let target = new Date(s.start).setHours(0, 0, 0, 0);
-                    // target.setDate(target.getDate() );
+
+                    console.log(date);
+                    console.log(target);
 
                     return date == target;
                 });
@@ -97,46 +106,58 @@ function ProfileSessions({sessions, onHover, onLeave}) {
         
                         if (i >= filtered.length) break;
                         
-                        block.push(<div key={i} className={styles.onlineSessionWrapper} onMouseEnter={handleSessionEnter(sessions[i].platform)} onMouseLeave={onLeave}>
-                            <p className={styles.onlineTiming}>{sessions[i].start} - {sessions[i].end}</p>
+                        block.push(<div key={i} className={styles.onlineSessionWrapper} onMouseEnter={handleSessionEnter(filtered[i].platform)} onMouseLeave={onLeave}>
+                            <p className={styles.onlineTiming}>{renderDate(filtered[i].start)} - {renderDate(filtered[i].end)}</p>
                             <div className={styles.decorator}></div>
-                            <p className={styles.onlinePlatform}>{sessions[i].platform}</p>
+                            <p className={styles.onlinePlatform}>{filtered[i].platform}</p>
                         </div>);
             
                     }
         
                     blocks.push(<div key={j} className={styles.onlineSessionBlock}>{block}</div>);
                 }
+
+                break;
             }
 
-            // case 'theDayBeforeYesterday': {
-            //     let filtered = sessions.filter(s => {
-            //         return new Date().setHours(0, 0, 0, 0) == new Date(s.start).setHours(0, 0, 0, 0);
-            //     });
+            case 'theDayBeforeYesterday': {
+
+                let filtered = sessions.filter(s => {
+                    let date = new Date();
+                    date.setDate(date.getDate() - 2);
+                    date.setHours(0, 0, 0, 0);
+                    date = date.getTime();
+
+                    let target = new Date(s.start).setHours(0, 0, 0, 0);
+
+                    return date == target;
+                });
         
-            //     let count = Math.ceil(filtered.length / 8);
+                let count = Math.ceil(filtered.length / 8);
         
-            //     let block = [];
+                let block = [];
         
-            //     for (let j = 0; j < count; j++) {
+                for (let j = 0; j < count; j++) {
         
-            //         block = [];
+                    block = [];
         
-            //         for (let i = 8*j; i < 8 + 8*j; i++) {
+                    for (let i = 8*j; i < 8 + 8*j; i++) {
         
-            //             if (i >= filtered.length) break;
+                        if (i >= filtered.length) break;
                         
-            //             block.push(<div key={i} className={styles.onlineSessionWrapper} onMouseEnter={handleSessionEnter(sessions[i].platform)} onMouseLeave={onLeave}>
-            //                 <p className={styles.onlineTiming}>{sessions[i].start} - {sessions[i].end}</p>
-            //                 <div className={styles.decorator}></div>
-            //                 <p className={styles.onlinePlatform}>{sessions[i].platform}</p>
-            //             </div>);
+                        block.push(<div key={i} className={styles.onlineSessionWrapper} onMouseEnter={handleSessionEnter(filtered[i].platform)} onMouseLeave={onLeave}>
+                            <p className={styles.onlineTiming}>{renderDate(filtered[i].start)} - {renderDate(filtered[i].end)}</p>
+                            <div className={styles.decorator}></div>
+                            <p className={styles.onlinePlatform}>{filtered[i].platform}</p>
+                        </div>);
             
-            //         }
+                    }
         
-            //         blocks.push(<div key={j} className={styles.onlineSessionBlock}>{block}</div>);
-            //     }
-            // }
+                    blocks.push(<div key={j} className={styles.onlineSessionBlock}>{block}</div>);
+                }
+
+                break;
+            }
         }
 
         
