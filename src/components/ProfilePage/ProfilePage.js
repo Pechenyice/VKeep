@@ -6,10 +6,12 @@ import ProfileInfo from "../ProfileInfo/ProfileInfo";
 import LayoutManager from "../LayoutManager/LayoutManager";
 import ProfileActivity from "../ProfileActivity/ProfileActivity";
 import ProfileStatInfo from "../ProfileStatInfo/ProfileStatInfo";
-import ProfileStatistic from "../ProfileStatistic/ProfileStatistic";
 import ProfileSessions from "../ProfileSessions/ProfileSessions";
+import Skeleton from "../Skeleton/Skeleton";
 import API from "../../api/API";
 import PropTypes from "prop-types";
+import ProfileStatisticManager from "../ProfileStatistic/ProfileStatisticManager";
+import ProfileSessionsManager from "../ProfileSessions/ProfileSessionsManager";
 
 function ProfilePage({user}) {
 
@@ -20,9 +22,12 @@ function ProfilePage({user}) {
     let [sessions, setSessions] = useState([]);
 
     useEffect(async () => {
-        setUserInfo(await API.getUser(user));
-        setUpdates(await API.getUpdates(user));
-        setSessions(await API.getSessions(user));
+
+        let [ui, uu, us] = await Promise.all([API.getUser(user), API.getUpdates(user), API.getSessions(user)]);
+
+        setUserInfo(ui);
+        setUpdates(uu);
+        setSessions(us);
     }, []);
 
     let [size, setSize] = useState(false);
@@ -57,31 +62,28 @@ function ProfilePage({user}) {
                     {
                         Object.keys(userInfo).length && Object.keys(updates).length ? 
                         <ProfileInfo img={profilePhoto} name={userInfo.fio} aka={user} status={updates.statuses[0].newValue} platform={userInfo.online}/> :
-                        null
+                        <div style={{display: 'flex', gap: '50px'}}>
+                            <Skeleton type={'photo'} stylesheet={{height: '180px', width: '180px'}} />
+                            <Skeleton type={'text'} stylesheet={{width: 'calc(100% - 180px - 50px - 400px)', height: '180px', display: 'flex', alignItems: 'center'}} />
+                        </div>
                     }
                     
                 </div>
 
-                <LayoutManager stylesheet={size ? {boxShadow: '0px 30px 120px 10px rgba(207, 200, 225, 0.8)'} : {}} columns={2}>
+                <LayoutManager resizing={true} stylesheet={size ? {boxShadow: '0px 30px 120px 10px rgba(207, 200, 225, 0.8)', minHeight: '970px', position: 'absolute', zIndex: '2', transition: '.3s'} : {minHeight: '1px', transition: '0s'}} size={size} columns={2}>
                     <ProfileActivity onResize={handleActivityResize} content={updates} size={size}/>
                 </LayoutManager>
 
                 <LayoutManager stylesheet={{maxHeight: '570px'}} columns={1}>
-                    {
-                        sessions.length && Object.keys(userInfo).length && Object.keys(updates).length ? <ProfileStatInfo content={{userInfo, updates, sessions}}/> : null
-                    }
+                    <ProfileStatInfo content={{userInfo, updates, sessions}}/>
                 </LayoutManager>
 
                 <LayoutManager stylesheet={{maxHeight: '605px'}} columns={1}>
-                    {
-                        sessions.length ? <ProfileStatistic content={sessions} platformSelected={platformSelected}/> : null
-                    }
+                    <ProfileStatisticManager content={sessions} platformSelected={platformSelected}/>
                 </LayoutManager>
 
                 <LayoutManager columns={2}>
-                    {
-                        sessions.length ? <ProfileSessions sessions={sessions} onHover={handleSessionHovered} onLeave={handleSessionLeaved} /> : null
-                    }
+                    <ProfileSessionsManager sessions={sessions} onHover={handleSessionHovered} onLeave={handleSessionLeaved} />
                 </LayoutManager>
 
             </div>
