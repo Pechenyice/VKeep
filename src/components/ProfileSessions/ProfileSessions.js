@@ -39,6 +39,53 @@ function ProfileSessions({sessions, onHover, onLeave}) {
         return `${datevalues[3]}:${datevalues[4]}`;
     }
 
+    function countSessions() {
+        switch (period) {
+            case 'today': {
+
+                let filtered = sessions.filter(s => {
+
+                    return new Date().setHours(0, 0, 0, 0) == new Date(s.start).setHours(0, 0, 0, 0);
+                });
+
+                return filtered.length;
+            }
+
+            case 'yesterday': {
+
+                let filtered = sessions.filter(s => {
+                    let date = new Date();
+                    date.setDate(date.getDate() - 1);
+                    date.setHours(0, 0, 0, 0);
+                    date = date.getTime();
+                    
+
+                    let target = new Date(s.start).setHours(0, 0, 0, 0);
+
+                    return date == target;
+                });
+
+                return filtered.length;
+            }
+
+            case 'theDayBeforeYesterday': {
+
+                let filtered = sessions.filter(s => {
+                    let date = new Date();
+                    date.setDate(date.getDate() - 2);
+                    date.setHours(0, 0, 0, 0);
+                    date = date.getTime();
+
+                    let target = new Date(s.start).setHours(0, 0, 0, 0);
+
+                    return date == target;
+                });
+
+                return filtered.length;
+            }
+        }
+    }
+
     function constructOnline() {
 
         let blocks = [];
@@ -87,9 +134,6 @@ function ProfileSessions({sessions, onHover, onLeave}) {
                     
 
                     let target = new Date(s.start).setHours(0, 0, 0, 0);
-
-                    console.log(date);
-                    console.log(target);
 
                     return date == target;
                 });
@@ -164,14 +208,14 @@ function ProfileSessions({sessions, onHover, onLeave}) {
 
         
 
-        return <div className={styles.blocksGrid}>{blocks}</div>;
+        return blocks.length ? <div className={styles.blocksGrid}>{blocks}</div> : null;
     }
 
     return (
         <div className={styles.sessionsWrapper}>
             
             <div className={styles.sessionsLegend}>
-                <ServiceName name={'Сессии'} displayCount={true} count={sessions.length} />
+                <ServiceName name={'Сессии'} displayCount={true} count={countSessions()} />
 
                 <div className={styles.daysWrapper}>
                     <DayPicker onClick={handlePeriodClick('theDayBeforeYesterday')} text={'позавчера'} isActive={checkActive('theDayBeforeYesterday')} />
@@ -181,6 +225,7 @@ function ProfileSessions({sessions, onHover, onLeave}) {
             </div>
 
             <div className={styles.onlineWrapper}>
+                <div className={styles.onlineEmptyFuller}>Пользователь не появлялся в сети</div>
                 {
                     constructOnline()
                 }
