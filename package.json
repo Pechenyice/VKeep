@@ -1,6 +1,7 @@
 {
   "name": "vkeep",
   "homepage": "https://pechenyice.github.io/VKeep",
+  "proxy": "http://localhost:3001",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -16,6 +17,7 @@
     "web-vitals": "^1.1.2"
   },
   "scripts": {
+    "construct": "npm i && cd ./server && npm i && cd ..",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
