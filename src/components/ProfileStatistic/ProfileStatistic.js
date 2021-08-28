@@ -9,17 +9,24 @@ import PropTypes from 'prop-types';
 
 Chart.register(...registerables);
 
-function ProfileStatistic({platformSelected}) {
+function ProfileStatistic({content, platformSelected}) {
+
+    let [period, setPeriod] = useState('day');
 
     useEffect(() => {
+        let pcT = countOnlineTime('PC');
+        let androidT = countOnlineTime('Android');
+        let iosT = countOnlineTime('IOS');
+        let otherT = countOnlineTime('Other');
+
         let ctx = document.getElementById('myChart');
 
         const data = {
-        labels: [Colors.PC, Colors.Android, Colors.IOS, Colors.Other],
+        labels: ['PC', 'Android', 'IOS', 'Other'],
         datasets: [
             {
                 label: 'Online time',
-                data: [112, 55, 240, 30],
+                data: [pcT, androidT, iosT, otherT],
                 borderColor: [Colors.PC, Colors.Android, Colors.IOS, Colors.Other],
                 backgroundColor: [Colors.PC, Colors.Android, Colors.IOS, Colors.Other],
             }
@@ -57,10 +64,15 @@ function ProfileStatistic({platformSelected}) {
 
         let myChart = new Chart(ctx, config);
         
+        return () => {
+            myChart.destroy()
+        }
         
-    }, []);
+    }, [period]);
 
-    let [period, setPeriod] = useState('day');
+    let [weights, setWeights] = useState([0, 0, 0, 0])
+
+    
 
     function checkActive(t) {
         return t == period;
@@ -79,6 +91,59 @@ function ProfileStatistic({platformSelected}) {
         return `${hours} ч ${minutes} м`;
     }
 
+    function isDateInThisWeek(date) {
+        const todayObj = new Date();
+        const todayDate = todayObj.getDate();
+        const todayDay = todayObj.getDay();
+      
+        // get first date of week
+        const firstDayOfWeek = new Date(todayObj.setDate(todayDate - todayDay));
+      
+        // get last date of week
+        const lastDayOfWeek = new Date(firstDayOfWeek);
+        lastDayOfWeek.setDate(lastDayOfWeek.getDate() + 6);
+      
+        // if date is equal or within the first and last dates of the week
+        return date >= firstDayOfWeek && date <= lastDayOfWeek;
+      }
+
+    function countOnlineTime(platform = null) {
+        switch (period) {
+            case 'day': {
+                let filtered = content.filter(s => {
+                    return !platform ? new Date().setHours(0, 0, 0, 0) == new Date(s.start).setHours(0, 0, 0, 0) : platform == s.platform && new Date().setHours(0, 0, 0, 0) == new Date(s.start).setHours(0, 0, 0, 0);
+                });
+                let sum = 0;
+                filtered.forEach(f => {
+                    sum += f.end - f.start;
+                });
+                return sum / 1000;
+            }
+
+            case 'week': {
+                let filtered = content.filter(s => {
+                    return !platform ? isDateInThisWeek(new Date(s.start)) : platform == s.platform && isDateInThisWeek(new Date(s.start));
+                });
+                let sum = 0;
+                filtered.forEach(f => {
+                    sum += f.end - f.start;
+                });
+                return sum / 1000;
+            }
+
+            case 'month': {
+                let filtered = content.filter(s => {
+                    return !platform ? (new Date(s.start)).getMonth == (new Date()).getMonth : platform == s.platform && (new Date(s.start)).getMonth == (new Date()).getMonth;
+                });
+                let sum = 0;
+                filtered.forEach(f => {
+                    sum += f.end - f.start;
+                });
+                return sum / 1000;
+            }
+        }
+    }
+
     return (
         <div className={styles.statisticWrapper}>
             <ServiceName name={'Статистика'} displayCount={false} />
@@ -90,15 +155,15 @@ function ProfileStatistic({platformSelected}) {
             </div>
 
             <div className={styles.chartWrapper}>
-                <p className={styles.chartTiming}>{humanedOnlineTime(112+55+240+30)}</p>
+                <p className={styles.chartTiming}>{humanedOnlineTime(countOnlineTime())}</p>
                 <canvas className={styles.chart} id='myChart' />
             </div>
 
             <div className={styles.legend}>
-                <ChartTimePlank isActive={platformSelected === 'PC'} platform={'PC'} time={humanedOnlineTime(112)}/>
-                <ChartTimePlank isActive={platformSelected === 'Android'} platform={'Android'} time={humanedOnlineTime(55)}/>
-                <ChartTimePlank isActive={platformSelected === 'IOS'} platform={'IOS'} time={humanedOnlineTime(240)}/>
-                <ChartTimePlank isActive={platformSelected === 'Other'} platform={'Other'} time={humanedOnlineTime(30)}/>
+                <ChartTimePlank isActive={platformSelected === 'PC'} platform={'PC'} time={humanedOnlineTime(countOnlineTime('PC'))}/>
+                <ChartTimePlank isActive={platformSelected === 'Android'} platform={'Android'} time={humanedOnlineTime(countOnlineTime('Android'))}/>
+                <ChartTimePlank isActive={platformSelected === 'IOS'} platform={'IOS'} time={humanedOnlineTime(countOnlineTime('IOS'))}/>
+                <ChartTimePlank isActive={platformSelected === 'Other'} platform={'Other'} time={humanedOnlineTime(countOnlineTime('Other'))}/>
             </div>
         </div>
     );
@@ -106,6 +171,7 @@ function ProfileStatistic({platformSelected}) {
 }
 
 ProfileStatistic.propTypes = {
+    content: PropTypes.array,
     platformSelected: PropTypes.string
 }
 
