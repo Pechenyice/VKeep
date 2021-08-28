@@ -14,7 +14,7 @@ function App() {
 
     // <HomePage /> 
 
-    <ProfilePage user={'1'}/>
+    <ProfilePage user={'bobby'}/>
 
   );
 }
