@@ -55,7 +55,7 @@ function ProfileActivityNote({content}) {
 
                     <div className={styles.activityDate}>
                         {
-                            renderDate(content.timestamp)
+                            renderDate(content.detected)
                         }
                     </div>
 
