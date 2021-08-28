@@ -52,6 +52,15 @@ npm run construct
 npm run start
 ```
 
+to start Webpack server
+
+```
+cd ./server
+npm run start
+```
+
+to start development server
+
 ### Build
 
 ```
