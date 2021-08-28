@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import VKeepLogo from "../VKeepLogo/VKeepLogo";
 import styles from './ProfilePage.module.css';
 import profilePhoto from './../../img/badbad.jpg'
@@ -8,68 +8,29 @@ import ProfileActivity from "../ProfileActivity/ProfileActivity";
 import ProfileStatInfo from "../ProfileStatInfo/ProfileStatInfo";
 import ProfileStatistic from "../ProfileStatistic/ProfileStatistic";
 import ProfileSessions from "../ProfileSessions/ProfileSessions";
+import API from "../../api/API";
+import PropTypes from "prop-types";
 
-function ProfilePage() {
+function ProfilePage({user}) {
 
-    let [activities, setActivities] = useState([
-        {
-            type: 'status',
-            newValue: 'test',
-            oldValue: 'Blin',
-            timestamp: 1629983692000
-        },
-        {
-            type: 'name',
-            newValue: 'Билли Миллиган',
-            oldValue: 'Милли Биллиган',
-            timestamp: 1629983192000
-        },
-        {
-            type: 'status',
-            newValue: 'test',
-            oldValue: 'Blin',
-            timestamp: 1629283692000
-        },
-        {
-            type: 'status',
-            newValue: 'test',
-            oldValue: 'Blin',
-            timestamp: 1629983692000
-        },
-        {
-            type: 'status',
-            newValue: 'test',
-            oldValue: 'Blin',
-            timestamp: 1629983692000
-        },
-        {
-            type: 'name',
-            newValue: 'Билли Миллиган',
-            oldValue: 'Милли Биллиган',
-            timestamp: 1629983192000
-        },
-        {
-            type: 'status',
-            newValue: 'test',
-            oldValue: 'Blin',
-            timestamp: 1629283692000
-        },
-        {
-            type: 'status',
-            newValue: 'test',
-            oldValue: 'Blin',
-            timestamp: 1629983692000
-        }
-    ]);
+    let [userInfo, setUserInfo] = useState({});
+
+    let [updates, setUpdates] = useState({});
+
+    let [sessions, setSessions] = useState([]);
+
+    useEffect(async () => {
+        setUserInfo(await API.getUser(user));
+        setUpdates(await API.getUpdates(user));
+        setSessions(await API.getSessions(user));
+    }, []);
 
     let [size, setSize] = useState(false);
 
     let [platformSelected, setPlatformSelected] = useState('');
 
     function handleActivityResize() {
-
         setSize(!size);
-
     }
 
     function handleSessionHovered(platform) {
@@ -93,11 +54,16 @@ function ProfilePage() {
             <div className={styles.profileServices}>
 
                 <div className={styles.profileInfoWrapper}>
-                    <ProfileInfo img={profilePhoto} name={'Biba Bobov'} aka={'id1237482347'} status={'Я бобал меня бибали'} />
+                    {
+                        Object.keys(userInfo).length && Object.keys(updates).length ? 
+                        <ProfileInfo img={profilePhoto} name={userInfo.fio} aka={user} status={updates.statuses[0].newValue} platform={userInfo.online}/> :
+                        null
+                    }
+                    
                 </div>
 
                 <LayoutManager stylesheet={size ? {boxShadow: '0px 30px 120px 10px rgba(207, 200, 225, 0.8)'} : {}} columns={2}>
-                    <ProfileActivity onResize={handleActivityResize} content={activities} size={size}/>
+                    <ProfileActivity onResize={handleActivityResize} content={updates} size={size}/>
                 </LayoutManager>
 
                 <LayoutManager stylesheet={{maxHeight: '570px'}} columns={1}>
@@ -105,11 +71,15 @@ function ProfilePage() {
                 </LayoutManager>
 
                 <LayoutManager stylesheet={{maxHeight: '605px'}} columns={1}>
-                    <ProfileStatistic platformSelected={platformSelected}/>
+                    {
+                        sessions.length ? <ProfileStatistic content={sessions} platformSelected={platformSelected}/> : null
+                    }
                 </LayoutManager>
 
                 <LayoutManager columns={2}>
-                    <ProfileSessions onHover={handleSessionHovered} onLeave={handleSessionLeaved} />
+                    {
+                        sessions.length ? <ProfileSessions sessions={sessions} onHover={handleSessionHovered} onLeave={handleSessionLeaved} /> : null
+                    }
                 </LayoutManager>
 
             </div>
@@ -117,6 +87,10 @@ function ProfilePage() {
         </section>
     );
 
+}
+
+ProfilePage.propTypes = {
+    user: PropTypes.string
 }
 
 export default ProfilePage;
