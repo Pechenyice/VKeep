@@ -16,6 +16,8 @@ let API = {
 
         res = await res.json();
 
+        console.log('getUser ended')
+
         return res;
 
     },
@@ -26,6 +28,8 @@ let API = {
 
         res = await res.json();
 
+        console.log('getSessions ended')
+
         return res;
 
     },
@@ -35,6 +39,8 @@ let API = {
         let res = await fetch(constructUrl('/updates', u));
 
         res = await res.json();
+
+        console.log('getUpdates ended')
 
         return res;
 
