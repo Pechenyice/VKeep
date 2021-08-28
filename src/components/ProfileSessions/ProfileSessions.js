@@ -4,60 +4,7 @@ import PropTypes, { func } from 'prop-types';
 import ServiceName from "../ServiceName/ServiceName";
 import DayPicker from "../DayPicker/DayPicker";
 
-function ProfileSessions({onHover, onLeave}) {
-
-    let [sessions, setSessions] = useState([
-        {
-            start: '00:10',
-            end: '00-12',
-            platform: 'PC'
-        },
-        {
-            start: '00:10',
-            end: '00-12',
-            platform: 'Android'
-        },
-        {
-            start: '00:10',
-            end: '00-12',
-            platform: 'IOS'
-        },
-        {
-            start: '00:10',
-            end: '00-12',
-            platform: 'Other'
-        },
-        {
-            start: '00:10',
-            end: '00-12',
-            platform: 'PC'
-        },
-        {
-            start: '00:10',
-            end: '00-12',
-            platform: 'PC'
-        },
-        {
-            start: '00:10',
-            end: '00-12',
-            platform: 'PC'
-        },
-        {
-            start: '00:10',
-            end: '00-12',
-            platform: 'PC'
-        },
-        {
-            start: '00:10',
-            end: '00-12',
-            platform: 'PC'
-        },
-        {
-            start: '00:10',
-            end: '00-12',
-            platform: 'PC'
-        }
-    ]);
+function ProfileSessions({sessions, onHover, onLeave}) {
 
     let [period, setPeriod] = useState('today');
 
@@ -77,31 +24,122 @@ function ProfileSessions({onHover, onLeave}) {
         }
     }
 
+    function renderDate(ts) {
+        let date = new Date(ts);
+
+        let datevalues = [
+            date.getFullYear(),
+            ('0' + (date.getMonth()+1)).slice(-2),
+            ('0' + date.getDate()).slice(-2),
+            ('0' + date.getHours()).slice(-2),
+            ('0' + date.getMinutes()).slice(-2),
+            ('0' + date.getSeconds()).slice(-2)
+        ];
+
+        return `${datevalues[2]}-${datevalues[1]}-${datevalues[0]} ${datevalues[3]}:${datevalues[4]}:${datevalues[5]}`;
+    }
+
     function constructOnline() {
 
-        let count = Math.ceil(sessions.length / 8);
-
-        let block = [];
         let blocks = [];
 
-        for (let j = 0; j < count; j++) {
-
-            block = [];
-
-            for (let i = 8*j; i < 8 + 8*j; i++) {
-
-                if (i >= sessions.length) break;
-                
-                block.push(<div key={i} className={styles.onlineSessionWrapper} onMouseEnter={handleSessionEnter(sessions[i].platform)} onMouseLeave={onLeave}>
-                    <p className={styles.onlineTiming}>{sessions[i].start} - {sessions[i].end}</p>
-                    <div className={styles.decorator}></div>
-                    <p className={styles.onlinePlatform}>{sessions[i].platform}</p>
-                </div>);
-    
+        switch (period) {
+            case 'today': {
+                let filtered = sessions.filter(s => {
+                    return new Date().setHours(0, 0, 0, 0) == new Date(s.start).setHours(0, 0, 0, 0);
+                });
+        
+                let count = Math.ceil(filtered.length / 8);
+        
+                let block = [];
+        
+                for (let j = 0; j < count; j++) {
+        
+                    block = [];
+        
+                    for (let i = 8*j; i < 8 + 8*j; i++) {
+        
+                        if (i >= filtered.length) break;
+                        
+                        block.push(<div key={i} className={styles.onlineSessionWrapper} onMouseEnter={handleSessionEnter(sessions[i].platform)} onMouseLeave={onLeave}>
+                            <p className={styles.onlineTiming}>{renderDate(sessions[i].end - sessions[i].start)}</p>
+                            <div className={styles.decorator}></div>
+                            <p className={styles.onlinePlatform}>{sessions[i].platform}</p>
+                        </div>);
+            
+                    }
+        
+                    blocks.push(<div key={j} className={styles.onlineSessionBlock}>{block}</div>);
+                }
             }
 
-            blocks.push(<div key={j} className={styles.onlineSessionBlock}>{block}</div>);
+            case 'yesterday': {
+                let filtered = sessions.filter(s => {
+                    let date = new Date();
+                    date.setDate(date.getDate() - 1);
+                    date.setHours(0, 0, 0, 0);
+
+                    let target = new Date(s.start).setHours(0, 0, 0, 0);
+                    // target.setDate(target.getDate() );
+
+                    return date == target;
+                });
+        
+                let count = Math.ceil(filtered.length / 8);
+        
+                let block = [];
+        
+                for (let j = 0; j < count; j++) {
+        
+                    block = [];
+        
+                    for (let i = 8*j; i < 8 + 8*j; i++) {
+        
+                        if (i >= filtered.length) break;
+                        
+                        block.push(<div key={i} className={styles.onlineSessionWrapper} onMouseEnter={handleSessionEnter(sessions[i].platform)} onMouseLeave={onLeave}>
+                            <p className={styles.onlineTiming}>{sessions[i].start} - {sessions[i].end}</p>
+                            <div className={styles.decorator}></div>
+                            <p className={styles.onlinePlatform}>{sessions[i].platform}</p>
+                        </div>);
+            
+                    }
+        
+                    blocks.push(<div key={j} className={styles.onlineSessionBlock}>{block}</div>);
+                }
+            }
+
+            // case 'theDayBeforeYesterday': {
+            //     let filtered = sessions.filter(s => {
+            //         return new Date().setHours(0, 0, 0, 0) == new Date(s.start).setHours(0, 0, 0, 0);
+            //     });
+        
+            //     let count = Math.ceil(filtered.length / 8);
+        
+            //     let block = [];
+        
+            //     for (let j = 0; j < count; j++) {
+        
+            //         block = [];
+        
+            //         for (let i = 8*j; i < 8 + 8*j; i++) {
+        
+            //             if (i >= filtered.length) break;
+                        
+            //             block.push(<div key={i} className={styles.onlineSessionWrapper} onMouseEnter={handleSessionEnter(sessions[i].platform)} onMouseLeave={onLeave}>
+            //                 <p className={styles.onlineTiming}>{sessions[i].start} - {sessions[i].end}</p>
+            //                 <div className={styles.decorator}></div>
+            //                 <p className={styles.onlinePlatform}>{sessions[i].platform}</p>
+            //             </div>);
+            
+            //         }
+        
+            //         blocks.push(<div key={j} className={styles.onlineSessionBlock}>{block}</div>);
+            //     }
+            // }
         }
+
+        
 
         
 
@@ -133,6 +171,7 @@ function ProfileSessions({onHover, onLeave}) {
 }
 
 ProfileSessions.propTypes = {
+    sessions: PropTypes.array,
     onHover: PropTypes.func,
     onLeave: PropTypes.func
 }
