@@ -1,4 +1,6 @@
 .statInfoWrapper {
+    position: relative;
+    width: 100%;
     display: flex;
     gap: 30px;
     margin-bottom: 30px;
@@ -6,6 +8,12 @@
 
 .statInfoWrapper:last-child {
     margin-bottom: 0px;
+}
+
+.statTextWrapper {
+    min-width: 50%;
+    width: max-content;
+    height: 100%;
 }
 
 .statCount {

@@ -3,7 +3,7 @@ import styles from './ProfileStatInfo.module.css';
 import PropTypes from 'prop-types';
 import SvgIconBlock from "../SvgIconBlock/SvgIconBlock";
 
-function StatInfoSpec({icon, hint, count}) {
+function StatInfoSpec({fillSkeleton=false, skeleton, icon, hint, count, }) {
 
     function inclined(word) {
         return word;
@@ -13,16 +13,26 @@ function StatInfoSpec({icon, hint, count}) {
         <div className={styles.statInfoWrapper}>
             <SvgIconBlock icon={icon}/>
             
-            <div className={styles.statTextWrapper}>
-                <p className={styles.statCount}>{count}</p>
-                <p className={styles.statHint}>{inclined(hint)}</p>
-            </div>
+            {
+                !fillSkeleton ?
+                <div className={styles.statTextWrapper}>
+                    <p className={styles.statCount}>{count}</p>
+                    <p className={styles.statHint}>{inclined(hint)}</p>
+                </div> :
+                <div className={styles.statTextWrapper}>
+                    {
+                        skeleton
+                    }
+                </div>
+            }
         </div>
     );
 
 }
 
 StatInfoSpec.propTypes = {
+    fillSkeleton: PropTypes.bool,
+    skeleton: PropTypes.node,
     icon: PropTypes.object,
     hint: PropTypes.string,
     count: PropTypes.number
