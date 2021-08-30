@@ -25,15 +25,19 @@ function ProfileActivity({content, onResize, size}) {
         return count;
     }
 
+    let classes = [styles.activities];
+
+    if (size) classes.push(styles.maxedActivities);
+
     return (
         // <div className={styles.wrapperContainerBox} style={size ? {height: '1020px'} : {}}>
-            <div className={styles.wrapperContainer} style={size ? {height: '1020px'} : {}}>
+            // <div className={styles.wrapperContainer} style={size ? {height: '1020px'} : {}}>
                 <div className={styles.wrapper}>
                     <ServiceName name={'Активность'} displayCount={true} count={
                         Object.keys(content).length ? countRenderedUpdates() : '-'
                         } />
 
-                    <div className={styles.activities} style={size ? {height: '900px', overflowY: 'auto'} : {}}>
+                    <div className={classes.join(' ')}>
                         {
                             Object.keys(content).length ? 
                             <ProfileActivityManager content={content}/> : 
@@ -49,7 +53,7 @@ function ProfileActivity({content, onResize, size}) {
                         <div className={styles.moreIcon} style={size ? {transform: 'rotateZ(180deg)', marginTop: '-8px'} : {}}>{svgManager.getSvg('moreActivityContent')}</div>
                     </div>
                 </div>
-            </div>
+            // </div>
         // </div>
     );
 
