@@ -4,9 +4,8 @@ import styles from './ProfilePage.module.css';
 import profilePhoto from './../../img/badbad.jpg'
 import ProfileInfo from "../ProfileInfo/ProfileInfo";
 import LayoutManager from "../LayoutManager/LayoutManager";
-import ProfileActivity from "../ProfileActivity/ProfileActivity";
+import ProfileActivityResizer from "../ProfileActivity/ProfileActivityResizer";
 import ProfileStatInfo from "../ProfileStatInfo/ProfileStatInfo";
-import ProfileSessions from "../ProfileSessions/ProfileSessions";
 import Skeleton from "../Skeleton/Skeleton";
 import API from "../../api/API";
 import PropTypes from "prop-types";
@@ -70,8 +69,8 @@ function ProfilePage({user}) {
                     
                 </div>
 
-                <LayoutManager resizing={true} stylesheet={size ? {boxShadow: '0px 30px 120px 10px rgba(207, 200, 225, 0.8)', minHeight: '970px', position: 'absolute', zIndex: '2', transition: '.3s'} : {minHeight: '1px', transition: '0s'}} size={size} columns={2}>
-                    <ProfileActivity onResize={handleActivityResize} content={updates} size={size}/>
+                <LayoutManager resizing={true} size={size} columns={2}>
+                    <ProfileActivityResizer onResize={handleActivityResize} content={updates} size={size}/>
                 </LayoutManager>
 
                 <LayoutManager stylesheet={{maxHeight: '570px'}} columns={1}>
