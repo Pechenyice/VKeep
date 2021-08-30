@@ -6,32 +6,11 @@ function LayoutManager({columns, stylesheet = {}, size=false, resizing=false, ch
 
     let classes = [styles.flexColumns, styles[`flexColumns-${columns}`]];
 
-    function selectWrapper() {
-
-        if (size) {
-            return (
-
-                <div className={classes.join(' ')} style={{padding: '0px'}} >
-                    <section className={classes.join(' ')} style={stylesheet}>
-                        {children}
-                    </section>
-                </div>
-
-            );
-        } else {
-            return (
-                // <div style={resizing ? {padding: '0px', position: 'absolute'} : {}}>
-                    <section className={classes.join(' ')} style={stylesheet}>
-                        {children}
-                    </section>
-                // </div>
-
-            );
-        }
-
-    }
-
-    return selectWrapper();
+    return (
+        <section className={classes.join(' ')} style={stylesheet}>
+            {children}
+        </section>
+    );
 
 }
 
