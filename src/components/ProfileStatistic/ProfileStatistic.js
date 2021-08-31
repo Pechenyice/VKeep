@@ -2,12 +2,10 @@ import React, { useState, useEffect } from "react";
 import styles from './ProfileStatistic.module.css';
 import ServiceName from "../ServiceName/ServiceName";
 import DayPicker from "../DayPicker/DayPicker";
-import { Chart, registerables } from 'chart.js';
+import Chart from 'chart.js/auto';
 import ChartTimePlank from "./ChartTimePlank";
 import Colors from "../../variables/Colors";
 import PropTypes from 'prop-types';
-
-Chart.register(...registerables);
 
 function ProfileStatistic({content, platformSelected}) {
 
