@@ -230,25 +230,25 @@ app.get('/', (req, res) => {
 })
 
 app.get('/api/users', (req, res) => {
-    setTimeout(() => {
+    // setTimeout(() => {
         if (req.query.user) res.send(JSON.stringify(users[req.query.user].common));
         if (req.query.id) res.send(JSON.stringify(users[req.query.id].common));
-    }, 5000);
+    // }, 3000);
     
 })
 
 app.get('/api/sessions', (req, res) => {
-    setTimeout(() => {
+    // setTimeout(() => {
         if (req.query.user) res.send(JSON.stringify(users[req.query.user].sessions));
         if (req.query.id) res.send(JSON.stringify(users[req.query.id].sessions));
-    }, 10000);
+    // }, 3000);
 })
 
 app.get('/api/updates', (req, res) => {
-    setTimeout(() => {
+    // setTimeout(() => {
         if (req.query.user) res.send(JSON.stringify(users[req.query.user].updates));
         if (req.query.id) res.send(JSON.stringify(users[req.query.id].updates));
-    }, 15000);
+    // }, 3000);
 })
 
 app.listen(port, () => {
