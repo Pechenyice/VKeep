@@ -16,7 +16,7 @@ function ServiceName({name, displayCount, count}) {
 ServiceName.propTypes = {
     name: PropTypes.string,
     displayCount: PropTypes.bool,
-    count: PropTypes.number
+    count: PropTypes.any
 }
 
 export default ServiceName;
