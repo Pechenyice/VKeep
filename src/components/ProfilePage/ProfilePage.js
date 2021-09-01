@@ -13,7 +13,6 @@ import ProfileStatisticManager from "../ProfileStatistic/ProfileStatisticManager
 import ProfileSessionsManager from "../ProfileSessions/ProfileSessionsManager";
 
 function ProfilePage({user}) {
-
     let [userInfo, setUserInfo] = useState({});
 
     let [updates, setUpdates] = useState({});
@@ -21,7 +20,6 @@ function ProfilePage({user}) {
     let [sessions, setSessions] = useState([]);
 
     useEffect(async () => {
-
         let [ui, uu, us] = await Promise.all([API.getUser(user), API.getUpdates(user), API.getSessions(user)]);
 
         setUserInfo(ui);
@@ -48,7 +46,6 @@ function ProfilePage({user}) {
 
     return (
         <section className={styles.profilePage}>
-
             <header className={styles.header}>
                 <div className={styles.headerContent}>
                     <VKeepLogo logoFontSize={36} displayHint={false}/>
@@ -56,7 +53,6 @@ function ProfilePage({user}) {
             </header>
 
             <div className={styles.profileServices}>
-
                 <div className={styles.profileInfoWrapper}>
                     {
                         Object.keys(userInfo).length && Object.keys(updates).length ? 
@@ -66,7 +62,6 @@ function ProfilePage({user}) {
                             <Skeleton type={'text'} stylesheet={{width: 'calc(100% - 180px - 50px - 400px)', height: '180px', display: 'flex', alignItems: 'center'}} />
                         </div>
                     }
-                    
                 </div>
 
                 <LayoutManager resizing={true} size={size} columns={2}>
@@ -84,12 +79,9 @@ function ProfilePage({user}) {
                 <LayoutManager columns={2}>
                     <ProfileSessionsManager sessions={sessions} onHover={handleSessionHovered} onLeave={handleSessionLeaved} />
                 </LayoutManager>
-
             </div>
-
         </section>
     );
-
 }
 
 ProfilePage.propTypes = {
