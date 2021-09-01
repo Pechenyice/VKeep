@@ -1,13 +1,17 @@
+import React from 'react';
+import { shallow, configure } from 'enzyme';
+import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import ProfilePage from './../components/ProfilePage/ProfilePage';
 import VKeepLogo from '../components/VKeepLogo/VKeepLogo';
+import ProfileInfo from '../components/ProfileInfo/ProfileInfo';
 import ProfileActivityResizer from '../components/ProfileActivity/ProfileActivityResizer';
 import ProfileStatInfo from '../components/ProfileStatInfo/ProfileStatInfo';
 import ProfileStatisticManager from '../components/ProfileStatistic/ProfileStatisticManager';
 import ProfileSessionsManager from '../components/ProfileSessions/ProfileSessionsManager';
 import LayoutManager from '../components/LayoutManager/LayoutManager';
-import React from 'react';
-import { shallow, configure } from 'enzyme';
-import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
+import API from './../api/API';
+
+jest.mock('./../api/API');
 
 configure({ adapter: new Adapter() });
 
