@@ -29,7 +29,6 @@ function ProfileInfo({img, name, aka, status, platform}) {
                     <p>{status}</p>
                 </div>
             </div>
-            
         </div>
     );
 
