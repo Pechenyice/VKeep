@@ -11,8 +11,6 @@ function VKeepLogo({logoFontSize, displayHint, hintFontSize}) {
         </div>
     );
 
-    
-
 }
 
 VKeepLogo.propTypes = {
