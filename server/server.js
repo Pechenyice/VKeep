@@ -2,6 +2,8 @@ const express = require('express');
 const app = express();
 require('dotenv').config();
 const port = process.env.PORT || 9999;
+const fs = require('fs');
+const chalk = require('chalk');
 
 app.use(express.json());
 
@@ -251,6 +253,11 @@ app.get('/api/updates', (req, res) => {
     // }, 3000);
 })
 
-app.listen(port, () => {
-  console.log(`Listening at http://localhost:${port}`)
-})
+fs.readFile('./../TODO', (_, content) => {
+    app.listen(port, () => {
+        console.log(`Listening at http://localhost:${port}`);
+        console.log(chalk.bgYellow.whiteBright.bold(`\nTODO:\n`));
+        console.log(chalk.yellowBright(content));
+    })
+});
+
