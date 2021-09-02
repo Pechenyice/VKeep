@@ -1,8 +1,6 @@
 1. New profile image in profile activity and profile info
 2. Adaptive
-3. transition to resize and remove paddingRight from activity block
-4. Refactor Promise.all in api requests to Promise.then
-5. Refactor ProfileStatisticManager to ProfileActivity type
-6. Write tests for refactored ProfileStatisticManager
-7. Refactor ProfileSessionsManager to ProfileActivity type
-8. Write tests for refactored ProfileSessionsManager
+3. remove paddingRight for activities from activity block
+4. With Router can have error of updating unmounted component state
+5. Write tests for refactored ProfileStatisticManager
+6. Write tests for refactored ProfileSessionsManager
