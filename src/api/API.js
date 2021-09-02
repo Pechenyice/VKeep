@@ -10,40 +10,34 @@ function constructUrl(endpoint, u) {
 }
 
 let API = {
-    getUser: async (u) => {
-
+    getUser: async (u, c) => {
         let res = await fetch(constructUrl('/users', u));
 
         res = await res.json();
 
         console.log('getUser ended')
 
-        return res;
-
+        c(res);
     },
 
-    getSessions: async (u) => {
-
+    getSessions: async (u, c) => {
         let res = await fetch(constructUrl('/sessions', u));
 
         res = await res.json();
 
         console.log('getSessions ended')
 
-        return res;
-
+        c(res);
     },
 
-    getUpdates: async (u) => {
-
+    getUpdates: async (u, c) => {
         let res = await fetch(constructUrl('/updates', u));
 
         res = await res.json();
 
         console.log('getUpdates ended')
 
-        return res;
-
+        c(res);
     }
 }
 
