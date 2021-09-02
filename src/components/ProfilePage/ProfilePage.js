@@ -9,27 +9,29 @@ import ProfileStatInfo from "../ProfileStatInfo/ProfileStatInfo";
 import Skeleton from "../Skeleton/Skeleton";
 import API from "../../api/API";
 import PropTypes from "prop-types";
-import ProfileStatisticManager from "../ProfileStatistic/ProfileStatisticManager";
-import ProfileSessionsManager from "../ProfileSessions/ProfileSessionsManager";
+import ProfileStatistic from "../ProfileStatistic/ProfileStatistic";
+import ProfileSessions from "../ProfileSessions/ProfileSessions";
 
 function ProfilePage({user}) {
     let [userInfo, setUserInfo] = useState({});
 
     let [updates, setUpdates] = useState({});
 
-    let [sessions, setSessions] = useState([]);
-
-    useEffect(async () => {
-        let [ui, uu, us] = await Promise.all([API.getUser(user), API.getUpdates(user), API.getSessions(user)]);
-
-        setUserInfo(ui);
-        setUpdates(uu);
-        setSessions(us);
-    }, []);
+    let [sessions, setSessions] = useState({'needFetch': true, entities: []});
 
     let [size, setSize] = useState(false);
 
     let [platformSelected, setPlatformSelected] = useState('');
+
+    useEffect(async () => {
+        fetchProfileData();
+    }, []);
+
+    function fetchProfileData() {
+        API.getUser(user, res => setUserInfo(res));
+        API.getUpdates(user, res => setUpdates(res));
+        API.getSessions(user, res => setSessions(Object.assign({}, {'needFetch': false, entities: res})));
+    }
 
     function handleActivityResize() {
         setSize(!size);
@@ -73,11 +75,11 @@ function ProfilePage({user}) {
                 </LayoutManager>
 
                 <LayoutManager stylesheet={{maxHeight: '605px'}} columns={1}>
-                    <ProfileStatisticManager content={sessions} platformSelected={platformSelected}/>
+                    <ProfileStatistic content={sessions} platformSelected={platformSelected}/>
                 </LayoutManager>
 
                 <LayoutManager columns={2}>
-                    <ProfileSessionsManager sessions={sessions} onHover={handleSessionHovered} onLeave={handleSessionLeaved} />
+                    <ProfileSessions sessions={sessions} onHover={handleSessionHovered} onLeave={handleSessionLeaved} />
                 </LayoutManager>
             </div>
         </section>
