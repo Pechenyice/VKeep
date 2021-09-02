@@ -6,6 +6,7 @@ import Chart from 'chart.js/auto';
 import ChartTimePlank from "./ChartTimePlank";
 import Colors from "../../variables/Colors";
 import PropTypes from 'prop-types';
+import Skeleton from "../Skeleton/Skeleton";
 
 function ProfileStatistic({content, platformSelected}) {
 
@@ -60,20 +61,20 @@ function ProfileStatistic({content, platformSelected}) {
             },
         };
 
-        let myChart = new Chart(ctx, config);
+        let myChart = !content.needFetch ? new Chart(ctx, config): null;
         
         return () => {
-            myChart.destroy()
+            myChart?.destroy()
         }
         
-    }, [period]);
+    }, [period, content]);
 
     let [weights, setWeights] = useState([0, 0, 0, 0])
 
     
 
     function checkActive(t) {
-        return t == period;
+        return t === period;
     }
 
     function handlePeriodClick(p) {
@@ -112,7 +113,7 @@ function ProfileStatistic({content, platformSelected}) {
     function countOnlineTime(platform = null) {
         switch (period) {
             case 'day': {
-                let filtered = content.filter(s => {
+                let filtered = content.entities.filter(s => {
                     return !platform ? new Date().setHours(0, 0, 0, 0) == new Date(s.start).setHours(0, 0, 0, 0) : platform == s.platform && new Date().setHours(0, 0, 0, 0) == new Date(s.start).setHours(0, 0, 0, 0);
                 });
                 let sum = 0;
@@ -123,7 +124,7 @@ function ProfileStatistic({content, platformSelected}) {
             }
 
             case 'week': {
-                let filtered = content.filter(s => {
+                let filtered = content.entities.filter(s => {
                     return !platform ? isDateInThisWeek(new Date(s.start)) : platform == s.platform && isDateInThisWeek(new Date(s.start));
                 });
                 let sum = 0;
@@ -134,7 +135,7 @@ function ProfileStatistic({content, platformSelected}) {
             }
 
             case 'month': {
-                let filtered = content.filter(s => {
+                let filtered = content.entities.filter(s => {
                     return !platform ? (new Date(s.start)).getMonth == (new Date()).getMonth : platform == s.platform && (new Date(s.start)).getMonth == (new Date()).getMonth;
                 });
                 let sum = 0;
@@ -158,7 +159,11 @@ function ProfileStatistic({content, platformSelected}) {
 
             <div className={styles.chartWrapper}>
                 <p className={styles.chartTiming}>{humanedOnlineTime(countOnlineTime())}</p>
-                <canvas className={styles.chart} id='myChart' />
+                {
+                    !content.needFetch ? 
+                    <canvas className={styles.chart} id='myChart' /> :
+                    <Skeleton stylesheet={{position: 'absolute', top: 0, left: 0}} type={'chart'} />
+                }
             </div>
 
             <div className={styles.legend}>
@@ -173,7 +178,7 @@ function ProfileStatistic({content, platformSelected}) {
 }
 
 ProfileStatistic.propTypes = {
-    content: PropTypes.array,
+    content: PropTypes.object,
     platformSelected: PropTypes.string
 }
 
