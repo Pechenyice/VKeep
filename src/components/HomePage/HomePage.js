@@ -2,11 +2,11 @@ import React from "react";
 import styles from './HomePage.module.css';
 import VKeepLogo from "../VKeepLogo/VKeepLogo";
 import HomePageForm from "./HomePageForm";
+import PropTypes from "prop-types";
 
-function HomePage() {
+function HomePage({onUserSelected}) {
 
     return (
-        
         <section className={styles.homePage}>
 
             <div>
@@ -14,13 +14,16 @@ function HomePage() {
                     <VKeepLogo logoFontSize={70} displayHint={true} hintFontSize={16}/>
                 </div>
 
-                <HomePageForm />
+                <HomePageForm onUserSelected={onUserSelected} />
             </div>
 
         </section>
-
     );
 
+}
+
+HomePage.propTypes = {
+    onUserSelected: PropTypes.func
 }
 
 export default HomePage;
