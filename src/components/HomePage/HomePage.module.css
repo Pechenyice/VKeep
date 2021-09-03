@@ -65,10 +65,20 @@
     color: var(--grey);
 }
 
-.svgWapper {
+.input.inputError {
+    border: 1px solid rgb(255, 54, 54);
+    transition: .3s;
+}
+
+.svgWrapper {
     position: absolute;
     top: 16px;
     left: 16px;
+}
+
+.errorText {
+    color: rgb(255, 54, 54);
+    font-size: 12px;
 }
 
 .inputSubmit {
