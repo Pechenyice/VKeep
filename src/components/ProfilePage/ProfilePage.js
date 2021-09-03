@@ -24,6 +24,7 @@ function ProfilePage({user}) {
     let [platformSelected, setPlatformSelected] = useState('');
 
     useEffect(async () => {
+        // console.log(location.pathname)
         fetchProfileData();
     }, []);
 
