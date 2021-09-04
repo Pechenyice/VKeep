@@ -13,7 +13,7 @@ describe('Shallow tests: Profile statistic', () => {
 
     describe('hover logic', () => {
         beforeEach(() => {
-            wrapper = shallow(<ProfileStatistic content={} platformSelected={'PC'} />);
+            wrapper = shallow(<ProfileStatistic content={{}} platformSelected={'PC'} />);
         });
 
         it('should trigger platform mock', () => {
