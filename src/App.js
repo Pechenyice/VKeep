@@ -26,11 +26,6 @@ function App() {
         <Route path={'/'} render={() => <HomePage onUserSelected={handleUserSelected} />} />
       </Switch>
     </Router>
-
-    // <HomePage /> 
-
-    // <ProfilePage user={'bobby'} />
-
   );
 
 }

@@ -3,4 +3,4 @@
 3. remove paddingRight for activities from activity block
 4. With Router can have error of updating unmounted component state
 5. Add path initialisation for /users/:id
-6. Fix tests and finish tests for refactored ProfileStatistic
+6. Update tests
