@@ -11,7 +11,7 @@ describe('Shallow tests: Profile aside stats', () => {
 
     describe('some API content is not ready', () => {
         beforeEach(() => {
-            wrapper = shallow(<ProfileStatInfo content={{'userInfo': {}, 'sessions': {}, 'updates': {}}} />);
+            wrapper = shallow(<ProfileStatInfo content={{'userInfo': {}, 'sessions': {'needFetch': true, 'entities': []}, 'updates': {}}} />);
         });
     
         it('should render skeletons', () => {
@@ -23,13 +23,13 @@ describe('Shallow tests: Profile aside stats', () => {
 
     describe('all API content is not ready', () => {
         beforeEach(() => {
-            wrapper = shallow(<ProfileStatInfo content={{'userInfo': {'test': true}, 'sessions': {'needFetch': true, 'entities': []}, 'updates': {'statuses': [], 'names': [], 'avatars': []}}} />);
+            wrapper = shallow(<ProfileStatInfo content={{'userInfo': {}, 'sessions': {'needFetch': true, 'entities': []}, 'updates': {}}} />);
         });
     
         it('should render skeletons', () => {
             expect(
                 wrapper.find('StatInfoSpec').first().props().fillSkeleton
-            ).toBe(false);
+            ).toBe(true);
         });
     });
 });
