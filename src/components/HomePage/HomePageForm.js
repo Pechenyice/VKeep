@@ -26,9 +26,7 @@ function HomePageForm({ onUserSelected }) {
         return true;
     }
 
-    function handleInputIsNotInteresting() {
-        setError({ 'isActive': false, 'content': '' });
-    }
+    function handleInputIsNotInteresting() {}
 
     function handleVkUserInput(e) {
         validateInput(e.target.value);
