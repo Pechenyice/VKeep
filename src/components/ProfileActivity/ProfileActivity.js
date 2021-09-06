@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from './ProfileActivity.module.css';
 import PropTypes from 'prop-types';
 import ServiceName from "../ServiceName/ServiceName";
