@@ -2,27 +2,16 @@ import './App.css';
 import HomePage from './components/HomePage/HomePage';
 import ProfilePage from './components/ProfilePage/ProfilePage';
 import {
-  BrowserRouter as Router,
   Route,
-  Link,
-  Redirect,
   Switch
 } from 'react-router-dom';
-import { useState } from 'react';
 
 function App() {
 
-  let [user, setUser] = useState('');
-
-  function handleUserSelected(vkUser) {
-    setUser(vkUser);
-    // location.pathname = [location.pathname, vkUser].join('/');
-  }
-
   return (
     <Switch>
-      <Route path={'/users'} render={() => <ProfilePage user={user} />} />
-      <Route path={'/'} render={() => <HomePage onUserSelected={handleUserSelected} />} />
+      <Route path={'/users/:vkUser'} render={({match}) => <ProfilePage user={match.params.vkUser} />} />
+      <Route path={'/'} component={HomePage} />
     </Switch>
 
   );
