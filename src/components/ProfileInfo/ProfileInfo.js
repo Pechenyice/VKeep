@@ -8,9 +8,9 @@ function ProfileInfo({img, name, aka, status, platform}) {
     return (
         <div className={styles.profileWrapper}>
             <div className={styles.profilePhotoWrapper}>
-                <img src={img} alt='profile photo' />
+                <img src={img} alt='profile avatar' />
                 {
-                    platform != '' ?
+                    platform !== '' ?
                     <div className={styles.platformPointWrapper}>
                         <PlatformPoint platform={platform}/> 
                     </div> : 
