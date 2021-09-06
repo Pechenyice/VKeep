@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import styles from './HomePage.module.css';
 import svgManager from "../../svgs/svgManager";
-import { Redirect, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-function HomePageForm({ onUserSelected }) {
+function HomePageForm() {
 
     let [vkUser, setVkUser] = useState('');
     let [error, setError] = useState({
@@ -36,7 +36,6 @@ function HomePageForm({ onUserSelected }) {
 
     function handleVkUserSubmit() {
         if (validateInput(vkUser)) {
-            onUserSelected(vkUser);
             setVkUser('');
         }
     }
@@ -59,7 +58,7 @@ function HomePageForm({ onUserSelected }) {
                     <button className={styles.inputSubmit} onClick={handleVkUserSubmit}>
                         {svgManager.getSvg('buttonSubmit')}
                     </button> :
-                    <Link to={'/users'}>
+                    <Link to={`/users/${vkUser}`}>
                         <button className={styles.inputSubmit} onClick={handleVkUserSubmit}>
                             {svgManager.getSvg('buttonSubmit')}
                         </button>
