@@ -33,13 +33,11 @@ function ProfileActivityManager({content}) {
     }
 
     return (
-
         <div>
             {
                 constructUpdates()
             }
         </div>
-
     );
 
 }
