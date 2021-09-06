@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from './ProfileActivity.module.css';
-import PropTypes, { func } from 'prop-types';
+import PropTypes from 'prop-types';
 import svgManager from "../../svgs/svgManager";
 import SvgIconBlock from "../SvgIconBlock/SvgIconBlock";
 
