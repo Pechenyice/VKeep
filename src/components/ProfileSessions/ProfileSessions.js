@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from './ProfileSessions.module.css';
-import PropTypes, { func } from 'prop-types';
+import PropTypes from 'prop-types';
 import ServiceName from "../ServiceName/ServiceName";
 import DayPicker from "../DayPicker/DayPicker";
 import Skeleton from "../Skeleton/Skeleton";
@@ -46,7 +46,7 @@ function ProfileSessions({ sessions, onHover, onLeave }) {
 
                 let filtered = sessions.entities.filter(s => {
 
-                    return new Date().setHours(0, 0, 0, 0) == new Date(s.start).setHours(0, 0, 0, 0);
+                    return new Date().setHours(0, 0, 0, 0) === new Date(s.start).setHours(0, 0, 0, 0);
                 });
 
                 return filtered.length;
@@ -63,7 +63,7 @@ function ProfileSessions({ sessions, onHover, onLeave }) {
 
                     let target = new Date(s.start).setHours(0, 0, 0, 0);
 
-                    return date == target;
+                    return date === target;
                 });
 
                 return filtered.length;
@@ -79,7 +79,7 @@ function ProfileSessions({ sessions, onHover, onLeave }) {
 
                     let target = new Date(s.start).setHours(0, 0, 0, 0);
 
-                    return date == target;
+                    return date === target;
                 });
 
                 return filtered.length;
@@ -96,7 +96,7 @@ function ProfileSessions({ sessions, onHover, onLeave }) {
 
                 let filtered = sessions.entities.filter(s => {
 
-                    return new Date().setHours(0, 0, 0, 0) == new Date(s.start).setHours(0, 0, 0, 0);
+                    return new Date().setHours(0, 0, 0, 0) === new Date(s.start).setHours(0, 0, 0, 0);
                 });
 
                 let count = Math.ceil(filtered.length / 8);
@@ -136,7 +136,7 @@ function ProfileSessions({ sessions, onHover, onLeave }) {
 
                     let target = new Date(s.start).setHours(0, 0, 0, 0);
 
-                    return date == target;
+                    return date === target;
                 });
 
                 let count = Math.ceil(filtered.length / 8);
@@ -175,7 +175,7 @@ function ProfileSessions({ sessions, onHover, onLeave }) {
 
                     let target = new Date(s.start).setHours(0, 0, 0, 0);
 
-                    return date == target;
+                    return date === target;
                 });
 
                 let count = Math.ceil(filtered.length / 8);
