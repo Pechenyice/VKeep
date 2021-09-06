@@ -1,6 +1,2 @@
 1. New profile image in profile activity and profile info
 2. Adaptive
-3. remove paddingRight for activities from activity block
-4. With Router can have error of updating unmounted component state
-5. Add path initialisation for /users/:id
-6. Update tests
