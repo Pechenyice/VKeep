@@ -23,9 +23,14 @@ function ProfilePage({user}) {
 
     let [platformSelected, setPlatformSelected] = useState('');
 
-    useEffect(async () => {
-        // console.log(location.pathname)
+    useEffect(() => {
         fetchProfileData();
+
+        return () => {
+            API.abortSessionsFetch();
+            API.abortUpdatesFetch();
+            API.abortUserInfoFetch();
+        }
     }, []);
 
     function fetchProfileData() {
@@ -59,7 +64,7 @@ function ProfilePage({user}) {
                 <div className={styles.profileInfoWrapper}>
                     {
                         Object.keys(userInfo).length && Object.keys(updates).length ? 
-                        <ProfileInfo img={profilePhoto} name={userInfo.fio} aka={user} status={updates.statuses[0].newValue} platform={userInfo.online}/> :
+                        <ProfileInfo img={profilePhoto} name={userInfo.fio} aka={user} status={updates.statuses[0]?.newValue} platform={userInfo.online}/> :
                         <div style={{display: 'flex', gap: '50px'}}>
                             <Skeleton type={'photo'} stylesheet={{height: '180px', width: '180px'}} />
                             <Skeleton type={'text'} stylesheet={{width: 'calc(100% - 180px - 50px - 400px)', height: '180px', display: 'flex', alignItems: 'center'}} />
