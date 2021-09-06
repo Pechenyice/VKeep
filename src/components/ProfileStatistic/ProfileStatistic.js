@@ -69,8 +69,6 @@ function ProfileStatistic({content, platformSelected}) {
         
     }, [period, content]);
 
-    let [weights, setWeights] = useState([0, 0, 0, 0])
-
     
 
     function checkActive(t) {
@@ -114,7 +112,7 @@ function ProfileStatistic({content, platformSelected}) {
         switch (period) {
             case 'day': {
                 let filtered = content.entities.filter(s => {
-                    return !platform ? new Date().setHours(0, 0, 0, 0) == new Date(s.start).setHours(0, 0, 0, 0) : platform == s.platform && new Date().setHours(0, 0, 0, 0) == new Date(s.start).setHours(0, 0, 0, 0);
+                    return !platform ? new Date().setHours(0, 0, 0, 0) === new Date(s.start).setHours(0, 0, 0, 0) : platform === s.platform && new Date().setHours(0, 0, 0, 0) === new Date(s.start).setHours(0, 0, 0, 0);
                 });
                 let sum = 0;
                 filtered.forEach(f => {
@@ -125,7 +123,7 @@ function ProfileStatistic({content, platformSelected}) {
 
             case 'week': {
                 let filtered = content.entities.filter(s => {
-                    return !platform ? isDateInThisWeek(new Date(s.start)) : platform == s.platform && isDateInThisWeek(new Date(s.start));
+                    return !platform ? isDateInThisWeek(new Date(s.start)) : platform === s.platform && isDateInThisWeek(new Date(s.start));
                 });
                 let sum = 0;
                 filtered.forEach(f => {
@@ -136,7 +134,7 @@ function ProfileStatistic({content, platformSelected}) {
 
             case 'month': {
                 let filtered = content.entities.filter(s => {
-                    return !platform ? (new Date(s.start)).getMonth == (new Date()).getMonth : platform == s.platform && (new Date(s.start)).getMonth == (new Date()).getMonth;
+                    return !platform ? (new Date(s.start)).getMonth === (new Date()).getMonth : platform === s.platform && (new Date(s.start)).getMonth === (new Date()).getMonth;
                 });
                 let sum = 0;
                 filtered.forEach(f => {
