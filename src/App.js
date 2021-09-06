@@ -20,12 +20,11 @@ function App() {
   }
 
   return (
-    <Router>
-      <Switch>
-        <Route path={'/users'} render={() => <ProfilePage user={user} />} />
-        <Route path={'/'} render={() => <HomePage onUserSelected={handleUserSelected} />} />
-      </Switch>
-    </Router>
+    <Switch>
+      <Route path={'/users'} render={() => <ProfilePage user={user} />} />
+      <Route path={'/'} render={() => <HomePage onUserSelected={handleUserSelected} />} />
+    </Switch>
+
   );
 
 }
