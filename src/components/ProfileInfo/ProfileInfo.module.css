@@ -69,3 +69,65 @@
     line-height: 24px;
     color: var(--grey);
 }
+
+@media screen and (max-width: 1020px) {
+    .profilePhotoWrapper {
+        position: relative;
+        width: 100px;
+        height: 100px;
+    }
+
+    .profileTextWrapper {
+        max-width: 500px;
+    }
+
+    .profileName {
+        display: flex;
+        align-items: center;
+        font-size: 24px;
+    }
+
+    .profileStatus {
+        margin-top: 15px;
+        font-size: 14px;
+    }
+
+    .profileAka {
+        display: flex;
+        align-items: center;
+        word-wrap: break-word;
+        font-size: 24px;
+    }
+
+    .platformPointWrapper {
+        width: 20px;
+        height: 20px;
+        right: 7px;
+        transform: scale(.8);
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .profilePhotoWrapper {
+        width: 60px;
+        height: 60px;
+    }
+
+    .platformPointWrapper {
+        transform: scale(.6);
+        right: 0px;
+        bottom: -5px;
+    }
+
+    .profileWrapper {
+        gap: 20px;
+        grid-gap: 20px;
+        align-items: unset;
+    }
+
+    .profileLinksWrapper {
+        width: 232px;
+        flex-wrap: wrap;
+        row-gap: 0px;
+    }
+}
