@@ -76,11 +76,11 @@ function ProfilePage({user}) {
                     <ProfileActivityResizer onResize={handleActivityResize} content={updates} size={size}/>
                 </LayoutManager>
 
-                <LayoutManager stylesheet={{maxHeight: '570px'}} columns={1}>
+                <LayoutManager  columns={1}>
                     <ProfileStatInfo content={{userInfo, updates, sessions}}/>
                 </LayoutManager>
 
-                <LayoutManager stylesheet={{maxHeight: '605px'}} columns={1}>
+                <LayoutManager columns={1}>
                     <ProfileStatistic content={sessions} platformSelected={platformSelected}/>
                 </LayoutManager>
 
