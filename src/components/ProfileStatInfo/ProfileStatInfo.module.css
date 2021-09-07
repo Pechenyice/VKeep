@@ -38,3 +38,52 @@
 
     color: var(--grey);
 }
+
+@media screen and (max-width: 1600px) {
+    .statInfoWrapperContainer {
+        position: absolute;
+        top: 50px;
+        right: 50px;
+        bottom: 50px;
+        left: 50px;
+        margin: auto;
+        display: flex;
+        flex-wrap: wrap;
+    }
+}
+
+@media screen and (max-width: 1020px) {
+    .statTextWrapper {
+        max-width: 150px;
+    }
+
+    .statInfoWrapper {
+        gap: 20px;
+        grid-gap: 20px;
+    }
+    
+    .statCount {
+        font-size: 24px;
+        margin-top: 8px;
+        margin-bottom: 0px;
+    }
+
+    .statHint {
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .statTextWrapper {
+        max-width: 210px;
+    }
+
+    .statInfoWrapperContainer {
+        position: relative;
+        top: unset;
+        bottom: unset;
+        left: unset;
+        right: unset;
+        margin: unset;
+    }
+}
