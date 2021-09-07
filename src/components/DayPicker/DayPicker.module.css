@@ -1,5 +1,5 @@
 .day {
-    width: max-content;
+    width: 122px;
     height: 38px;
     font-family: Sansation;
     font-style: normal;
@@ -30,4 +30,11 @@
     color: var(--blue);
     background-color: #DFEDFE;
     transition: .3s;
+}
+
+@media screen and (max-width: 1020px) {
+    .day {
+        width: 112px;
+        font-size: 14px;
+    }
 }
