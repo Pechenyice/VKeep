@@ -76,6 +76,12 @@
     background: var(--white);
 }
 
+@media screen and (max-width: 767px) {
+    .photo {
+        transform: scale(.7);
+    }
+}
+
 @keyframes skeletonChartAnimator {
     from {
         transform: scale(1);
