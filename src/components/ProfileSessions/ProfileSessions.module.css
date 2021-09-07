@@ -84,3 +84,27 @@
 .onlineEmptyFuller:first-child:last-child {
     display: block;
 }
+
+@media screen and (max-width: 1660px) {
+    .sessionsWrapper {
+        min-height: 505px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .sessionsLegend {
+        flex-wrap: wrap;
+        row-gap: 30px;
+    }
+
+    .daysWrapper {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+        row-gap: 8px;
+    }
+
+    .blocksGrid {
+        flex-wrap: wrap;
+    }
+}
