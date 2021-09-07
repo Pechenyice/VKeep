@@ -28,3 +28,20 @@
     background: #DFEDFE;
     border-radius: 30px;
 }
+
+@media screen and (max-width: 1020px) {
+    .serviceName {
+        font-size: 20px;
+    }
+
+    .serviceCount {
+        width: 43px;
+        height: 22px;
+        font-size: 14px;
+    }
+
+    .serviceNameWrapper {
+        gap: 15px;
+        grid-gap: 15px;
+    }
+}
