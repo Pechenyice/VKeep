@@ -19,3 +19,39 @@
 .flexColumns-3 {
     width: calc(440px * 3 + 50px * 2);
 }
+
+@media screen and (max-width: 1020px) {
+    .flexColumns {
+        padding: 40px;
+    }
+
+    .flexColumns-1 {
+        width: 324px;
+    }
+    
+    .flexColumns-2 {
+        width: calc(324px * 2 + 40px);
+    }
+    
+    .flexColumns-3 {
+        width: calc(324px * 3 + 40px * 2);
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .flexColumns {
+        padding: 30px 20px;
+    }
+
+    .flexColumns-1 {
+        width: 312px;
+    }
+    
+    .flexColumns-2 {
+        width: 312px;
+    }
+    
+    .flexColumns-3 {
+        width: 312px;
+    }
+}
