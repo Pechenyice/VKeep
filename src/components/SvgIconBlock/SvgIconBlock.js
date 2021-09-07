@@ -6,7 +6,9 @@ function SvgIconBlock({icon}) {
 
     return (
         <div className={styles.activitySvg}>
-            {icon}
+            <div className={styles.activitySvgWrapper}>
+                {icon}
+            </div>
         </div>
     );
 
