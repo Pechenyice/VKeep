@@ -152,3 +152,64 @@
 .activityDecorated {
     text-decoration-line: line-through;
 }
+
+@media screen and (max-width: 1020px) {
+    .profileActivityResizeWrapper {
+        padding: 40px;
+        top: -40px;
+        left: -40px;
+        width: calc(100% + 80px);
+    }
+
+    .activities {
+        margin-top: 40px;
+        margin-bottom: 40px;
+    }
+
+    .activityContent {
+        width: calc(100% - 80px);
+    }
+
+    .activityNote {
+        gap: 10px;
+        grid-gap: 10px;
+    }
+
+    .activityTypeName {
+        font-size: 14px;
+    }
+
+    .activityDate {
+        font-size: 14px;
+    }
+
+    .activityText {
+        font-size: 14px;
+    }
+
+    .activityData {
+        margin-bottom: 5px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .profileActivityResizeWrapper {
+        padding: 30px 20px;
+        top: -30px;
+        left: -20px;
+        width: calc(100% + 40px);
+    }
+
+    .activityTypeName {
+        width: 100%;
+    }
+
+    .activityDate {
+        width: 100%;
+    }
+
+    .activityData {
+        width: 210px;
+        flex-wrap: wrap;
+    }
+}
