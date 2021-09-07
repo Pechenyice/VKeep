@@ -82,3 +82,24 @@
     color: var(--grey);
     transition: .3s;
 }
+
+@media screen and (max-width: 1020px) {
+    .daysWrapper {
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        row-gap: 8px;
+        margin-bottom: 30px;
+    }
+    
+    .chartWrapper {
+        margin-bottom: 30px;
+    }
+
+    .plankName {
+        font-size: 14px;
+    }
+
+    .plankTime {
+        font-size: 14px;
+    }
+}
