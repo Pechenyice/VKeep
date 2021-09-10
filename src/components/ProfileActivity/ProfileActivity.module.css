@@ -153,6 +153,13 @@
     text-decoration-line: line-through;
 }
 
+.profileActivityAvatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
 @media screen and (max-width: 1020px) {
     .profileActivityResizeWrapper {
         padding: 40px;
