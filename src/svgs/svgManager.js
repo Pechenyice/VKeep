@@ -32,7 +32,7 @@ let svgs = {
             <path d="M8.5 11C10.7091 11 12.5 9.20914 12.5 7C12.5 4.79086 10.7091 3 8.5 3C6.29086 3 4.5 4.79086 4.5 7C4.5 9.20914 6.29086 11 8.5 11Z" stroke="#2787F5" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
         </svg>,
 
-    'activity-image-svg':
+    'activity-avatar-svg':
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M19 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V5C21 3.89543 20.1046 3 19 3Z" stroke="#2787F5" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             <path d="M21 15L16 10L5 21" stroke="#2787F5" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
