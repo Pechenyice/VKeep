@@ -13,7 +13,6 @@ function App() {
       <Route path={'/users/:vkUser'} render={({match}) => <ProfilePage user={match.params.vkUser} />} />
       <Route path={'/'} component={HomePage} />
     </Switch>
-
   );
 
 }
