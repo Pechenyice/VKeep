@@ -12,7 +12,7 @@ function ProfileActivityNote({content}) {
                 return 'Новый статус';
             }
 
-            case 'image': {
+            case 'avatar': {
                 return 'Новое фото профиля';
             }
 
@@ -62,7 +62,11 @@ function ProfileActivityNote({content}) {
                 </div>
 
                 <div className={styles.activityText}>
-                    <p><span className={styles.activityDecorated}>{content.oldValue}</span> {'->'} <span>{content.newValue}</span></p>
+                    {
+                        content.type != 'avatar' ?
+                        <p><span className={styles.activityDecorated}>{content.oldValue}</span> {'->'} <span>{content.newValue}</span></p> :
+                        <p><span className={styles.activityDecorated}><img className={styles.profileActivityAvatar} src={content.oldValue}></img></span> <span><img className={styles.profileActivityAvatar} src={content.newValue}></img></span></p>
+                    }
                 </div>
 
             </div>
