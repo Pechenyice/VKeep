@@ -8,6 +8,7 @@ function ProfileInfo({img, name, aka, status, platform}) {
     return (
         <div className={styles.profileWrapper}>
             <div className={styles.profilePhotoWrapper}>
+                {console.log(img)}
                 <img src={img} alt='profile avatar' />
                 {
                     platform !== '' ?
