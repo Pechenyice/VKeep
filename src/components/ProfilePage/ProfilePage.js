@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import VKeepLogo from "../VKeepLogo/VKeepLogo";
 import styles from './ProfilePage.module.css';
-import profilePhoto from './../../img/badbad.jpg'
 import ProfileInfo from "../ProfileInfo/ProfileInfo";
 import LayoutManager from "../LayoutManager/LayoutManager";
 import ProfileActivityResizer from "../ProfileActivity/ProfileActivityResizer";

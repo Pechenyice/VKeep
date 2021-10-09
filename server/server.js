@@ -49,11 +49,11 @@ let users = {
                 }
             ],
             "avatars": [
-                // {
-                //     'oldValue': 'Bob',
-                //     'newValue': 'John',
-                //     'detected': 1630100321000
-                // }
+                {
+                    'oldValue': '',
+                    'newValue': '/static/media/badbad.de7fcaf0.jpg',
+                    'detected': 1630100321000
+                }
             ],
             "statuses": [
                 {
@@ -113,11 +113,11 @@ let users = {
                 }
             ],
             "avatars": [
-                // {
-                //     'oldValue': 'Bob',
-                //     'newValue': 'John',
-                //     'detected': 1630100321000
-                // }
+                {
+                    'oldValue': '/static/media/badbad.de7fcaf0.jpg',
+                    'newValue': '/static/media/badbad.de7fcaf0.jpg',
+                    'detected': 1630100321000
+                }
             ],
             "statuses": [
                 {
