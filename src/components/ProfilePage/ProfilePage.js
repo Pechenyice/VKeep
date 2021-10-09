@@ -30,13 +30,33 @@ function ProfilePage({user}) {
             API.abortSessionsFetch();
             API.abortUpdatesFetch();
             API.abortUserInfoFetch();
+            API.abortAggregatedDataFetch();
         }
     }, []);
 
     function fetchProfileData() {
-        API.getUser(user, res => setUserInfo(res));
-        API.getUpdates(user, res => setUpdates(res));
-        API.getSessions(user, res => setSessions(Object.assign({}, {'needFetch': false, entities: res})));
+        // API.getUser(user, res => setUserInfo(res));
+        // API.getUpdates(user, res => setUpdates(res));
+        // API.getSessions(user, res => setSessions(Object.assign({}, {'needFetch': false, entities: res})));
+
+        API.getAggregatedData(user, res => {
+            console.log(res)
+            // need usernames updates
+
+            setUserInfo({
+                fio: res.updates.name[0].newName,
+                friends: 12,
+                subs: 12,
+                likes: 100,
+                online: 'IOS'
+            });
+            setSessions(Object.assign({}, {'needFetch': false, entities: res.sessions}));
+            setUpdates({
+                    names: res.updates.name,
+                    avatars: res.updates.avatar,
+                    statuses: res.updates.status
+            })
+        });
     }
 
     function handleActivityResize() {
@@ -64,7 +84,7 @@ function ProfilePage({user}) {
                 <div className={styles.profileInfoWrapper}>
                     {
                         Object.keys(userInfo).length && Object.keys(updates).length ? 
-                        <ProfileInfo img={profilePhoto} name={userInfo.fio} aka={user} status={updates.statuses[0]?.newValue} platform={userInfo.online}/> :
+                        <ProfileInfo img={updates.avatars[0]?.newAvatarURL} name={userInfo.fio} aka={user} status={updates.statuses[0]?.newStatus} platform={userInfo.online}/> :
                         <div style={{display: 'flex', gap: '50px'}}>
                             <Skeleton type={'photo'} stylesheet={{height: '180px', width: '180px'}} />
                             <Skeleton type={'text'} stylesheet={{width: 'calc(100% - 180px - 50px - 400px)', height: '180px', display: 'flex', alignItems: 'center'}} />
