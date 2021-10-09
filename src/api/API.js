@@ -12,9 +12,31 @@ const aborts = {
     'sessionsFetchController': new AbortController(),
     'updatesFetchController': new AbortController(),
     'userInfoFetchController': new AbortController(),
+    'aggregatedDataFetchController': new AbortController()
 };
 
 let API = {
+    getAggregatedData: async (u, c) => {
+        let res = null;
+        try {
+            res = await fetch(`http://vkeep.don2quixote.ru/api/aggregator/aggregateAccount?accountID=209171867&sessionsOptions.from=0`, {signal: aborts.userInfoFetchController.signal});
+        } catch (e) {
+            if (e.name === 'AbortError') {
+                console.warn('User request aborted');
+                return;
+            }
+        }
+
+        res = await res.json();
+
+        c(res);
+    },
+
+    abortAggregatedDataFetch: () => {
+        aborts.aggregatedDataFetchController.abort();
+        aborts.aggregatedDataFetchController = new AbortController();
+    },
+
     getUser: async (u, c) => {
         let res = null;
         try {
