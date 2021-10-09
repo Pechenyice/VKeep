@@ -7,10 +7,13 @@ import ChartTimePlank from "./ChartTimePlank";
 import Colors from "../../variables/Colors";
 import PropTypes from 'prop-types';
 import Skeleton from "../Skeleton/Skeleton";
+import Platforms from "../../variables/Platforms";
 
 function ProfileStatistic({content, platformSelected}) {
 
     let [period, setPeriod] = useState('day');
+
+    const platforms = Platforms;
 
     useEffect(() => {
         let pcT = countOnlineTime('PC');
@@ -83,7 +86,7 @@ function ProfileStatistic({content, platformSelected}) {
 
     function humanedOnlineTime(time) {
         let minutes = ('0' + (time % 60)).slice(-2);
-        let hours = ((time - minutes) / 60);
+        let hours = ((time - +minutes) / 60);
 
         return `${hours} ч ${minutes} м`;
     }
@@ -112,35 +115,35 @@ function ProfileStatistic({content, platformSelected}) {
         switch (period) {
             case 'day': {
                 let filtered = content.entities.filter(s => {
-                    return !platform ? new Date().setHours(0, 0, 0, 0) === new Date(s.start).setHours(0, 0, 0, 0) : platform === s.platform && new Date().setHours(0, 0, 0, 0) === new Date(s.start).setHours(0, 0, 0, 0);
+                    return !platform ? new Date().setHours(0, 0, 0, 0) === new Date(s.start).setHours(0, 0, 0, 0) : platform === platforms[s.platform] && new Date().setHours(0, 0, 0, 0) === new Date(s.start).setHours(0, 0, 0, 0);
                 });
                 let sum = 0;
                 filtered.forEach(f => {
-                    sum += f.end - f.start;
+                    sum += new Date(f.end).getTime() - new Date(f.start).getTime();
                 });
-                return sum / 1000;
+                return Math.round(sum / 1000 / 60);
             }
 
             case 'week': {
                 let filtered = content.entities.filter(s => {
-                    return !platform ? isDateInThisWeek(new Date(s.start)) : platform === s.platform && isDateInThisWeek(new Date(s.start));
+                    return !platform ? isDateInThisWeek(new Date(s.start)) : platform === platforms[s.platform] && isDateInThisWeek(new Date(s.start));
                 });
                 let sum = 0;
                 filtered.forEach(f => {
-                    sum += f.end - f.start;
+                    sum += new Date(f.end).getTime() - new Date(f.start).getTime();
                 });
-                return sum / 1000;
+                return Math.round(sum / 1000 / 60);
             }
 
             case 'month': {
                 let filtered = content.entities.filter(s => {
-                    return !platform ? (new Date(s.start)).getMonth === (new Date()).getMonth : platform === s.platform && (new Date(s.start)).getMonth === (new Date()).getMonth;
+                    return !platform ? (new Date(s.start)).getMonth === (new Date()).getMonth : platform === platforms[s.platform] && (new Date(s.start)).getMonth === (new Date()).getMonth;
                 });
                 let sum = 0;
                 filtered.forEach(f => {
-                    sum += f.end - f.start;
+                    sum += new Date(f.end).getTime() - new Date(f.start).getTime();
                 });
-                return sum / 1000;
+                return Math.round(sum / 1000 / 60);
             }
         }
     }
