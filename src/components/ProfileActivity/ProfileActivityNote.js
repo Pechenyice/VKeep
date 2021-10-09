@@ -12,7 +12,7 @@ function ProfileActivityNote({content}) {
                 return 'Новый статус';
             }
 
-            case 'image': {
+            case 'avatar': {
                 return 'Новое фото профиля';
             }
 
@@ -36,6 +36,10 @@ function ProfileActivityNote({content}) {
 
         return `${datevalues[2]}-${datevalues[1]}-${datevalues[0]} ${datevalues[3]}:${datevalues[4]}:${datevalues[5]}`;
     }
+
+    function capitalizeFirstLetter(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+      }
 
     return (
         <div className={styles.activityNote}>
@@ -62,7 +66,11 @@ function ProfileActivityNote({content}) {
                 </div>
 
                 <div className={styles.activityText}>
-                    <p><span className={styles.activityDecorated}>{content.oldValue}</span> {'->'} <span>{content.newValue}</span></p>
+                    {
+                        content.type !== 'avatar' ?
+                        <p><span className={styles.activityDecorated}>{content[`old${capitalizeFirstLetter(content.type)}`]}</span> {'->'} <span>{content[`new${capitalizeFirstLetter(content.type)}`]}</span></p> :
+                        <p><span className={styles.activityDecorated}><img className={styles.profileActivityAvatar} src={content.oldAvatarURL}></img></span> <span><img className={styles.profileActivityAvatar} src={content.newAvatarURL}></img></span></p>
+                    }
                 </div>
 
             </div>
