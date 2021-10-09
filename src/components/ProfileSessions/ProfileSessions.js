@@ -4,12 +4,13 @@ import PropTypes from 'prop-types';
 import ServiceName from "../ServiceName/ServiceName";
 import DayPicker from "../DayPicker/DayPicker";
 import Skeleton from "../Skeleton/Skeleton";
+import Platforms from "../../variables/Platforms";
 
 function ProfileSessions({ sessions, onHover, onLeave }) {
 
     let [period, setPeriod] = useState('today');
 
-    const platforms = ['PC', 'Android', 'IOS', 'Other'];
+    const platforms = Platforms;
 
     function checkActive(t) {
         return t === period;
