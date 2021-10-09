@@ -17,12 +17,14 @@ function ProfileActivityManager({content}) {
         let notes = [];
 
         let all = names.concat(statuses).concat(avatars);
+        console.log(all);
 
         all.sort((a, b) => b - a);
 
         for (let n in all) {
 
-            if (all[n].isInitial) continue;
+            // need filter in top of all definition
+            // if (all[n].isInitial) continue;
 
             notes.push(
                 <ProfileActivityNote key={n} content={all[n]} />
