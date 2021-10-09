@@ -9,6 +9,8 @@ function ProfileSessions({ sessions, onHover, onLeave }) {
 
     let [period, setPeriod] = useState('today');
 
+    const platforms = ['PC', 'Android', 'IOS', 'Other'];
+
     function checkActive(t) {
         return t === period;
     }
@@ -111,10 +113,10 @@ function ProfileSessions({ sessions, onHover, onLeave }) {
 
                         if (i >= filtered.length) break;
 
-                        block.push(<div key={i} className={styles.onlineSessionWrapper} onMouseEnter={handleSessionEnter(filtered[i].platform)} onMouseLeave={onLeave}>
+                        block.push(<div key={i} className={styles.onlineSessionWrapper} onMouseEnter={handleSessionEnter(platforms[filtered[i].platform])} onMouseLeave={onLeave}>
                             <p className={styles.onlineTiming}>{renderDate(filtered[i].start)} - {renderDate(filtered[i].end)}</p>
                             <div className={styles.decorator}></div>
-                            <p className={styles.onlinePlatform}>{filtered[i].platform}</p>
+                            <p className={styles.onlinePlatform}>{platforms[filtered[i].platform]}</p>
                         </div>);
 
                     }
@@ -151,10 +153,10 @@ function ProfileSessions({ sessions, onHover, onLeave }) {
 
                         if (i >= filtered.length) break;
 
-                        block.push(<div key={i} className={styles.onlineSessionWrapper} onMouseEnter={handleSessionEnter(filtered[i].platform)} onMouseLeave={onLeave}>
+                        block.push(<div key={i} className={styles.onlineSessionWrapper} onMouseEnter={handleSessionEnter(platforms[filtered[i].platform])} onMouseLeave={onLeave}>
                             <p className={styles.onlineTiming}>{renderDate(filtered[i].start)} - {renderDate(filtered[i].end)}</p>
                             <div className={styles.decorator}></div>
-                            <p className={styles.onlinePlatform}>{filtered[i].platform}</p>
+                            <p className={styles.onlinePlatform}>{platforms[filtered[i].platform]}</p>
                         </div>);
 
                     }
@@ -190,10 +192,10 @@ function ProfileSessions({ sessions, onHover, onLeave }) {
 
                         if (i >= filtered.length) break;
 
-                        block.push(<div key={i} className={styles.onlineSessionWrapper} onMouseEnter={handleSessionEnter(filtered[i].platform)} onMouseLeave={onLeave}>
+                        block.push(<div key={i} className={styles.onlineSessionWrapper} onMouseEnter={handleSessionEnter(platforms[filtered[i].platform])} onMouseLeave={onLeave}>
                             <p className={styles.onlineTiming}>{renderDate(filtered[i].start)} - {renderDate(filtered[i].end)}</p>
                             <div className={styles.decorator}></div>
-                            <p className={styles.onlinePlatform}>{filtered[i].platform}</p>
+                            <p className={styles.onlinePlatform}>{platforms[filtered[i].platform]}</p>
                         </div>);
 
                     }
