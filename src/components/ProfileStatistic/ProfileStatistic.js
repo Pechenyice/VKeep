@@ -115,33 +115,33 @@ function ProfileStatistic({content, platformSelected}) {
         switch (period) {
             case 'day': {
                 let filtered = content.entities.filter(s => {
-                    return !platform ? new Date().setHours(0, 0, 0, 0) === new Date(s.start).setHours(0, 0, 0, 0) : platform === platforms[s.platform] && new Date().setHours(0, 0, 0, 0) === new Date(s.start).setHours(0, 0, 0, 0);
+                    return !platform ? new Date().setHours(0, 0, 0, 0) === new Date(s.start * 1000).setHours(0, 0, 0, 0) : platform === platforms[s.platform] && new Date().setHours(0, 0, 0, 0) === new Date(s.start * 1000).setHours(0, 0, 0, 0);
                 });
                 let sum = 0;
                 filtered.forEach(f => {
-                    sum += new Date(f.end).getTime() - new Date(f.start).getTime();
+                    sum += new Date(f.end * 1000).getTime() - new Date(f.start * 1000).getTime();
                 });
                 return Math.round(sum / 1000 / 60);
             }
 
             case 'week': {
                 let filtered = content.entities.filter(s => {
-                    return !platform ? isDateInThisWeek(new Date(s.start)) : platform === platforms[s.platform] && isDateInThisWeek(new Date(s.start));
+                    return !platform ? isDateInThisWeek(new Date(s.start * 1000)) : platform === platforms[s.platform] && isDateInThisWeek(new Date(s.start * 1000));
                 });
                 let sum = 0;
                 filtered.forEach(f => {
-                    sum += new Date(f.end).getTime() - new Date(f.start).getTime();
+                    sum += new Date(f.end * 1000).getTime() - new Date(f.start * 1000).getTime();
                 });
                 return Math.round(sum / 1000 / 60);
             }
 
             case 'month': {
                 let filtered = content.entities.filter(s => {
-                    return !platform ? (new Date(s.start)).getMonth === (new Date()).getMonth : platform === platforms[s.platform] && (new Date(s.start)).getMonth === (new Date()).getMonth;
+                    return !platform ? (new Date(s.start * 1000)).getMonth === (new Date()).getMonth : platform === platforms[s.platform] && (new Date(s.start * 1000)).getMonth === (new Date()).getMonth;
                 });
                 let sum = 0;
                 filtered.forEach(f => {
-                    sum += new Date(f.end).getTime() - new Date(f.start).getTime();
+                    sum += new Date(f.end * 1000).getTime() - new Date(f.start * 1000).getTime();
                 });
                 return Math.round(sum / 1000 / 60);
             }
