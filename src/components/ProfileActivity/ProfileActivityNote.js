@@ -59,7 +59,7 @@ function ProfileActivityNote({content}) {
 
                     <div className={styles.activityDate}>
                         {
-                            renderDate(content.detectedAt.toString())
+                            renderDate(content.detectedAt * 1000)
                         }
                     </div>
 
