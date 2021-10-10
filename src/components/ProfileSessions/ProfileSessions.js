@@ -49,7 +49,7 @@ function ProfileSessions({ sessions, onHover, onLeave }) {
 
                 let filtered = sessions.entities.filter(s => {
 
-                    return new Date().setHours(0, 0, 0, 0) === new Date(s.start).setHours(0, 0, 0, 0);
+                    return new Date().setHours(0, 0, 0, 0) === new Date(s.start * 1000).setHours(0, 0, 0, 0);
                 });
 
                 return filtered.length;
@@ -64,7 +64,7 @@ function ProfileSessions({ sessions, onHover, onLeave }) {
                     date = date.getTime();
 
 
-                    let target = new Date(s.start).setHours(0, 0, 0, 0);
+                    let target = new Date(s.start * 1000).setHours(0, 0, 0, 0);
 
                     return date === target;
                 });
@@ -80,7 +80,7 @@ function ProfileSessions({ sessions, onHover, onLeave }) {
                     date.setHours(0, 0, 0, 0);
                     date = date.getTime();
 
-                    let target = new Date(s.start).setHours(0, 0, 0, 0);
+                    let target = new Date(s.start * 1000).setHours(0, 0, 0, 0);
 
                     return date === target;
                 });
@@ -99,7 +99,7 @@ function ProfileSessions({ sessions, onHover, onLeave }) {
 
                 let filtered = sessions.entities.filter(s => {
 
-                    return new Date().setHours(0, 0, 0, 0) === new Date(s.start).setHours(0, 0, 0, 0);
+                    return new Date().setHours(0, 0, 0, 0) === new Date(s.start * 1000).setHours(0, 0, 0, 0);
                 });
 
                 let count = Math.ceil(filtered.length / 8);
@@ -115,7 +115,7 @@ function ProfileSessions({ sessions, onHover, onLeave }) {
                         if (i >= filtered.length) break;
 
                         block.push(<div key={i} className={styles.onlineSessionWrapper} onMouseEnter={handleSessionEnter(platforms[filtered[i].platform])} onMouseLeave={onLeave}>
-                            <p className={styles.onlineTiming}>{renderDate(filtered[i].start)} - {renderDate(filtered[i].end)}</p>
+                            <p className={styles.onlineTiming}>{renderDate(filtered[i].start * 1000)} - {renderDate(filtered[i].end * 1000)}</p>
                             <div className={styles.decorator}></div>
                             <p className={styles.onlinePlatform}>{platforms[filtered[i].platform]}</p>
                         </div>);
@@ -137,7 +137,7 @@ function ProfileSessions({ sessions, onHover, onLeave }) {
                     date = date.getTime();
 
 
-                    let target = new Date(s.start).setHours(0, 0, 0, 0);
+                    let target = new Date(s.start * 1000).setHours(0, 0, 0, 0);
 
                     return date === target;
                 });
@@ -155,7 +155,7 @@ function ProfileSessions({ sessions, onHover, onLeave }) {
                         if (i >= filtered.length) break;
 
                         block.push(<div key={i} className={styles.onlineSessionWrapper} onMouseEnter={handleSessionEnter(platforms[filtered[i].platform])} onMouseLeave={onLeave}>
-                            <p className={styles.onlineTiming}>{renderDate(filtered[i].start)} - {renderDate(filtered[i].end)}</p>
+                            <p className={styles.onlineTiming}>{renderDate(filtered[i].start * 1000)} - {renderDate(filtered[i].end * 1000)}</p>
                             <div className={styles.decorator}></div>
                             <p className={styles.onlinePlatform}>{platforms[filtered[i].platform]}</p>
                         </div>);
@@ -176,7 +176,7 @@ function ProfileSessions({ sessions, onHover, onLeave }) {
                     date.setHours(0, 0, 0, 0);
                     date = date.getTime();
 
-                    let target = new Date(s.start).setHours(0, 0, 0, 0);
+                    let target = new Date(s.start * 1000).setHours(0, 0, 0, 0);
 
                     return date === target;
                 });
@@ -194,7 +194,7 @@ function ProfileSessions({ sessions, onHover, onLeave }) {
                         if (i >= filtered.length) break;
 
                         block.push(<div key={i} className={styles.onlineSessionWrapper} onMouseEnter={handleSessionEnter(platforms[filtered[i].platform])} onMouseLeave={onLeave}>
-                            <p className={styles.onlineTiming}>{renderDate(filtered[i].start)} - {renderDate(filtered[i].end)}</p>
+                            <p className={styles.onlineTiming}>{renderDate(filtered[i].start * 1000)} - {renderDate(filtered[i].end * 1000)}</p>
                             <div className={styles.decorator}></div>
                             <p className={styles.onlinePlatform}>{platforms[filtered[i].platform]}</p>
                         </div>);
