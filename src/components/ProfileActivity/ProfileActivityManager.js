@@ -19,7 +19,7 @@ function ProfileActivityManager({content}) {
         let all = names.concat(statuses).concat(avatars);
         console.log(all);
 
-        all.sort((a, b) => b - a);
+        all.sort((a, b) => b.detectedAt - a.detectedAt);
 
         for (let n in all) {
 
