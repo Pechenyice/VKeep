@@ -10,17 +10,20 @@ import API from "../../api/API";
 import PropTypes from "prop-types";
 import ProfileStatistic from "../ProfileStatistic/ProfileStatistic";
 import ProfileSessions from "../ProfileSessions/ProfileSessions";
+import { Redirect } from "react-router-dom";
 
-function ProfilePage({user}) {
+function ProfilePage({ user }) {
     let [userInfo, setUserInfo] = useState({});
 
     let [updates, setUpdates] = useState({});
 
-    let [sessions, setSessions] = useState({'needFetch': true, entities: []});
+    let [sessions, setSessions] = useState({ 'needFetch': true, entities: [] });
 
     let [size, setSize] = useState(false);
 
     let [platformSelected, setPlatformSelected] = useState('');
+
+    let [userError, setUserError] = useState(false);
 
     useEffect(() => {
         fetchProfileData();
@@ -39,7 +42,10 @@ function ProfilePage({user}) {
         // API.getSessions(user, res => setSessions(Object.assign({}, {'needFetch': false, entities: res})));
 
         API.getAggregatedData(user, res => {
-            console.log(res)
+            if (!res) {
+                setUserError(true);
+                return;
+            }
             // need usernames updates
 
             setUserInfo({
@@ -49,11 +55,11 @@ function ProfilePage({user}) {
                 likes: 100,
                 online: 'IOS'
             });
-            setSessions(Object.assign({}, {'needFetch': false, entities: res.sessions}));
+            setSessions(Object.assign({}, { 'needFetch': false, entities: res.sessions }));
             setUpdates({
-                    names: res.updates.name,
-                    avatars: res.updates.avatar,
-                    statuses: res.updates.status
+                names: res.updates.name,
+                avatars: res.updates.avatar,
+                statuses: res.updates.status
             })
         });
     }
@@ -73,34 +79,41 @@ function ProfilePage({user}) {
 
     return (
         <section className={styles.profilePage}>
+            {
+                userError && <Redirect to={{
+                    pathname: '/',
+                    state: { error: 'No such user', showed: false }
+                }} />
+            }
+
             <header className={styles.header}>
                 <div className={styles.headerContent}>
-                    <VKeepLogo logoFontSize={36} displayHint={false}/>
+                    <VKeepLogo logoFontSize={36} displayHint={false} />
                 </div>
             </header>
 
             <div className={styles.profileServices}>
                 <div className={styles.profileInfoWrapper}>
                     {
-                        Object.keys(userInfo).length && Object.keys(updates).length ? 
-                        <ProfileInfo img={updates.avatars[0]?.newAvatarURL} name={userInfo.fio} aka={user} status={updates.statuses[0]?.newStatus} platform={userInfo.online}/> :
-                        <div style={{display: 'flex', gap: '50px'}}>
-                            <Skeleton type={'photo'} stylesheet={{height: '180px', width: '180px'}} />
-                            <Skeleton type={'text'} stylesheet={{width: 'calc(100% - 180px - 50px - 400px)', height: '180px', display: 'flex', alignItems: 'center'}} />
-                        </div>
+                        Object.keys(userInfo).length && Object.keys(updates).length ?
+                            <ProfileInfo img={updates.avatars[0]?.newAvatarURL} name={userInfo.fio} aka={user} status={updates.statuses[0]?.newStatus} platform={userInfo.online} /> :
+                            <div style={{ display: 'flex', gap: '50px' }}>
+                                <Skeleton type={'photo'} stylesheet={{ height: '180px', width: '180px' }} />
+                                <Skeleton type={'text'} stylesheet={{ width: 'calc(100% - 180px - 50px - 400px)', height: '180px', display: 'flex', alignItems: 'center' }} />
+                            </div>
                     }
                 </div>
 
                 <LayoutManager resizing={true} size={size} columns={2}>
-                    <ProfileActivityResizer onResize={handleActivityResize} content={updates} size={size}/>
-                </LayoutManager>
-
-                <LayoutManager  columns={1}>
-                    <ProfileStatInfo content={{userInfo, updates, sessions}}/>
+                    <ProfileActivityResizer onResize={handleActivityResize} content={updates} size={size} />
                 </LayoutManager>
 
                 <LayoutManager columns={1}>
-                    <ProfileStatistic content={sessions} platformSelected={platformSelected}/>
+                    <ProfileStatInfo content={{ userInfo, updates, sessions }} />
+                </LayoutManager>
+
+                <LayoutManager columns={1}>
+                    <ProfileStatistic content={sessions} platformSelected={platformSelected} />
                 </LayoutManager>
 
                 <LayoutManager columns={2}>
