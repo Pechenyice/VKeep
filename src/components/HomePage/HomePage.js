@@ -1,10 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from './HomePage.module.css';
 import VKeepLogo from "../VKeepLogo/VKeepLogo";
 import HomePageForm from "./HomePageForm";
 import PropTypes from "prop-types";
 
-function HomePage({onUserSelected}) {
+function HomePage({onUserSelected, location}) {
+
+    useEffect(() => {
+        if (location.state?.error && !location.state?.showed) {
+            alert(location.state.error);
+            location.state.showed = true;
+        }
+    }, []);
 
     return (
         <section className={styles.homePage}>
@@ -23,7 +30,8 @@ function HomePage({onUserSelected}) {
 }
 
 HomePage.propTypes = {
-    onUserSelected: PropTypes.func
+    onUserSelected: PropTypes.func,
+    location: PropTypes.object
 }
 
 export default HomePage;
