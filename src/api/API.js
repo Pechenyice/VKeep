@@ -1,4 +1,4 @@
-let HOST = 'http://localhost';
+let HOST = 'http://vkeep.don2quixote.ru';
 let PORT = '3001';
 let API_URL = '/api';
 
@@ -12,17 +12,73 @@ const aborts = {
     'sessionsFetchController': new AbortController(),
     'updatesFetchController': new AbortController(),
     'userInfoFetchController': new AbortController(),
-    'aggregatedDataFetchController': new AbortController()
+    'aggregatedDataFetchController': new AbortController(),
+    'userIdFetchController': new AbortController()
 };
 
+let DNS = {
+    getUserIdByUsername: (u) => {
+        let ttl = +(localStorage.getItem(`${u}_ttl`));
+        if (ttl < new Date().getTime()) return null;
+        return localStorage.getItem(u);
+    },
+
+    setUserIdByUsername: (u, i) => {
+        localStorage.setItem(u, i);
+        localStorage.setItem(`${u}_ttl`, new Date().getTime() + 1000 * 60 * 60 * 24);
+    }
+}
+
 let API = {
-    getAggregatedData: async (u, c) => {
+    getUserId: async (u) => {
+        let check = DNS.getUserIdByUsername(u);
+
+        if (check) return check;
+
         let res = null;
         try {
-            res = await fetch(`http://vkeep.don2quixote.ru/api/aggregator/aggregateAccount?accountID=209171867&sessionsOptions.from=0`, {signal: aborts.userInfoFetchController.signal});
+            res = await fetch(`${HOST}${API_URL}/accounts/getIDByUsername?username=${u}`, {signal: aborts.userIdFetchController.signal});
         } catch (e) {
             if (e.name === 'AbortError') {
-                console.warn('User request aborted');
+                console.warn('User id request aborted');
+                return;
+            }
+        }
+
+        res = await res.json();
+
+        if (res.error) {
+            console.warn(res.error);
+            return null;
+        }
+
+        DNS.setUserIdByUsername(u, res.accountID);
+
+        return res.accountID;
+    },
+
+    abortUserIdFetch: () => {
+        aborts.userIdFetchController.abort();
+        aborts.userIdFetchController = new AbortController();
+    },
+
+    getAggregatedData: async function(u, c) {
+        let isId = !isNaN(u);
+
+        if (!isId) {
+            u = await this.getUserId(u);
+            if (!u) {
+                console.warn('User aggregated data request aborted');
+                return c(null);
+            }
+        }
+
+        let res = null;
+        try {
+            res = await fetch(`${HOST}${API_URL}/aggregator/aggregateAccount?accountID=${u}&sessionsOptions.from=0`, {signal: aborts.userInfoFetchController.signal});
+        } catch (e) {
+            if (e.name === 'AbortError') {
+                console.warn('User aggregated data request aborted');
                 return;
             }
         }
