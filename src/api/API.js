@@ -85,6 +85,11 @@ let API = {
 
         res = await res.json();
 
+        if (res.error) {
+            console.warn(res.error);
+            return c(null);
+        }
+
         c(res);
     },
 
