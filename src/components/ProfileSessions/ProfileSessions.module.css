@@ -16,8 +16,11 @@
 }
 
 .blocksGrid {
+    flex-wrap: wrap;
     display: flex;
-    gap: 20px;
+    gap: 6px;
+    row-gap: 40px;
+    justify-content: baseline;
 }
 
 .onlineSessionWrapper {
@@ -102,9 +105,5 @@
         justify-content: center;
         flex-wrap: wrap;
         row-gap: 8px;
-    }
-
-    .blocksGrid {
-        flex-wrap: wrap;
     }
 }
