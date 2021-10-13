@@ -1,6 +1,6 @@
-let HOST = 'http://vkeep.don2quixote.ru';
+let HOST = process.env.REACT_APP_API_HOST;
 let PORT = '3001';
-let API_URL = '/api';
+let API_URL = process.env.REACT_APP_API_URL;
 
 function constructUrl(endpoint, u) {
     let isId = !isNaN(u);
