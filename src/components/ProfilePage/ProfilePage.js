@@ -46,10 +46,14 @@ function ProfilePage({ user }) {
                 setUserError(true);
                 return;
             }
-            // need usernames updates
+
+            if (!Object.values(res.updates).reduce((p, c) => p+c)) {
+                setUserError(true);
+                return;
+            }
 
             setUserInfo({
-                fio: res.updates.name[0].newName,
+                fio: res.updates?.name[0]?.newName,
                 friends: 12,
                 subs: 12,
                 likes: 100,
